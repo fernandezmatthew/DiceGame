@@ -1,14 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Die : MonoBehaviour
 {
 
-    [SerializeField] ScriptableDie scriptableDie;
+    public UnityEvent finishedRolling;
+
+    [SerializeField] public ScriptableDie scriptableDie;
     SpriteRenderer spriteRenderer;
-    int currentFaceIndex = 0;
+    public int currentFaceIndex = 0;
     int numFaces;
+    public int isRolling = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -16,15 +20,16 @@ public class Die : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = scriptableDie.faces[currentFaceIndex].sprite;
         numFaces = scriptableDie.faces.Length;
-        Roll(1.0f);
     }
 
     // Update is called once per frame
     void Update()
     {
+        
     }
 
     public void Roll(float length) {
+        isRolling = 2;
         StartCoroutine(RollNumber(length));
         StartCoroutine(SpinDie(length));
     }
@@ -35,14 +40,15 @@ public class Die : MonoBehaviour
         float switchTime = .1f;
         while (elapsedTime < length)
         {
-            int newIndex = Random.Range(0, numFaces);
-            while (newIndex == currentFaceIndex) {
-                newIndex = Random.Range(0, numFaces);
-            }
-            currentFaceIndex = newIndex;
+            currentFaceIndex = Random.Range(0, numFaces);
+            
             spriteRenderer.sprite = scriptableDie.faces[currentFaceIndex].sprite;
             elapsedTime += Time.deltaTime + switchTime;
             yield return new WaitForSeconds(switchTime);
+        }
+        isRolling -= 1;
+        if (isRolling == 0) {
+            finishedRolling.Invoke();
         }
     }
 
@@ -54,5 +60,9 @@ public class Die : MonoBehaviour
             yield return null;
         }
         transform.rotation = Quaternion.identity;
+        isRolling -= 1;
+        if (isRolling == 0) { 
+            finishedRolling.Invoke();
+        }
     }
 }
