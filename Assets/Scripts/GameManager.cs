@@ -7,14 +7,18 @@ using UnityEngine.Events;
 public class GameManager : MonoBehaviour
 {
     Die[] dice;
+    Camera cam;
 
     int diceRolling = 0;
 
     public UnityEvent diceRollFinished;
+    public UnityEvent<string> newSum;
+    public UnityEvent toggleLockDie;
 
     private void Start()
     {
         dice = FindObjectsOfType<Die>();
+        cam = FindObjectOfType<Camera>();
         if (dice != null)
         {
             foreach (Die die in dice)
@@ -43,10 +47,13 @@ public class GameManager : MonoBehaviour
             {
                 foreach (Die die in dice)
                 {
-                    diceRolling++;
-                    float rollLength = UnityEngine.Random.Range(.8f, 1.2f);
-                    die.Roll(rollLength);
+                    if (!die.isLocked) {
+                        diceRolling++;
+                        float rollLength = UnityEngine.Random.Range(.8f, 1.2f);
+                        die.Roll(rollLength);
+                    }
                 }
+                // if diceRolling > 0, increment number of rolls
             }
         }
     }
@@ -55,18 +62,36 @@ public class GameManager : MonoBehaviour
         diceRolling -= 1;
         if (diceRolling == 0) {
             diceRollFinished.Invoke();
-            PrintSumOfDice();
+            UpdateSumOfDice();
         }
     }
 
-    public void PrintSumOfDice() { 
+    public void UpdateSumOfDice() { 
         if (dice != null)
         {
             int sum = 0;
             foreach (Die die in dice) {
                 sum += die.scriptableDie.faces[die.currentFaceIndex].value;
             }
-            Debug.Log("Sum of Dice Equal to " + sum);
+            newSum.Invoke(sum.ToString());
+        }
+    }
+
+    public void CheckWhatsClicked(InputAction.CallbackContext ctx) {
+        if (ctx.phase == InputActionPhase.Started) {
+            // Check if clicked on a die.
+            Ray ray = cam.ScreenPointToRay(Mouse.current.position.ReadValue());
+            RaycastHit2D hit = Physics2D.GetRayIntersection(ray);
+
+            if (hit.collider != null) {
+                foreach (Die die in dice) {
+                    if (die.gameObject == hit.collider.gameObject) {
+                        if (diceRolling == 0) {
+                            die.ToggleLock();
+                        }
+                    }
+                }
+            }
         }
     }
 }
