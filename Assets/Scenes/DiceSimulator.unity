@@ -173,9 +173,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   scriptableDie: {fileID: 11400000, guid: db1267e1fde74b84099bfb32108d2f18, type: 2}
-  currentFaceIndex: 0
-  isRolling: 0
-  isLocked: 0
 --- !u!212 &33836814
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -651,9 +648,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   scriptableDie: {fileID: 11400000, guid: 8130e88fefc7ae84b8f3861ca706bfd1, type: 2}
-  currentFaceIndex: 0
-  isRolling: 0
-  isLocked: 0
 --- !u!212 &722070827
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1155,7 +1149,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -1206372597, guid: 8dc7437958f162f43963926778d08485, type: 3}
+  m_Sprite: {fileID: 981695117, guid: 5b08f46a5cbab3a47a429071e21f8e41, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1182,9 +1176,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   scriptableDie: {fileID: 11400000, guid: fba79adb4ac4aba45b08b8d8c117922d, type: 2}
-  currentFaceIndex: 0
-  isRolling: 0
-  isLocked: 0
 --- !u!61 &996235766
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1317,9 +1308,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   scriptableDie: {fileID: 11400000, guid: 81ad3d80987ec3f449269ec312d4cbf3, type: 2}
-  currentFaceIndex: 0
-  isRolling: 0
-  isLocked: 0
 --- !u!212 &1032088445
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1757,9 +1745,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   scriptableDie: {fileID: 11400000, guid: 8b10ed11b87ece54da379b26222f7c95, type: 2}
-  currentFaceIndex: 0
-  isRolling: 0
-  isLocked: 0
 --- !u!212 &1638715392
 SpriteRenderer:
   m_ObjectHideFlags: 0

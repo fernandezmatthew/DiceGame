@@ -5,18 +5,29 @@ using UnityEngine.Events;
 
 public class Die : MonoBehaviour
 {
+    [System.Serializable]
+    public struct Face
+    {
+        public Sprite sprite;
+        public int value;
+    }
 
     public UnityEvent finishedRolling;
 
-    public ScriptableDie scriptableDie;
-    SpriteRenderer spriteRenderer;
-    public int currentFaceIndex = 0;
-    int numFaces;
-    public int isRolling = 0;
-    public bool isLocked = false;
-    GameObject highlight;
+    [SerializeField] private ScriptableDie scriptableDie;
+    private SpriteRenderer spriteRenderer;
+    private int currentFaceIndex = 0;
+    private int numFaces;
+    private int rollingCount = 0;
+    private bool isLocked = false;
+    private GameObject highlight;
 
-    // Start is called before the first frame update
+    public Face CurrentFace { get { return scriptableDie.faces[currentFaceIndex]; } }
+    public int NumFaces { get { return scriptableDie.faces.Length;}}
+    public bool IsRolling { get { return rollingCount > 0; } }
+    public bool IsLocked { get { return isLocked; } }
+    public Face[] Faces { get { return scriptableDie.faces;} }
+
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -25,7 +36,6 @@ public class Die : MonoBehaviour
         InstantiateHightlight();
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -33,7 +43,7 @@ public class Die : MonoBehaviour
 
     public void Roll(float length) {
         if (!isLocked) {
-            isRolling = 2;
+            rollingCount = 2;
             StartCoroutine(RollNumber(length));
             StartCoroutine(SpinDie(length));
         }
@@ -51,8 +61,8 @@ public class Die : MonoBehaviour
             elapsedTime += Time.deltaTime + switchTime;
             yield return new WaitForSeconds(switchTime);
         }
-        isRolling -= 1;
-        if (isRolling == 0) {
+        rollingCount -= 1;
+        if (rollingCount == 0) {
             finishedRolling.Invoke();
         }
     }
@@ -65,8 +75,8 @@ public class Die : MonoBehaviour
             yield return null;
         }
         transform.rotation = Quaternion.identity;
-        isRolling -= 1;
-        if (isRolling == 0) { 
+        rollingCount -= 1;
+        if (rollingCount == 0) { 
             finishedRolling.Invoke();
         }
     }

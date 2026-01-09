@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: ClassicDie
   m_EditorClassIdentifier: 
   faces:
-  - sprite: {fileID: -1206372597, guid: 8dc7437958f162f43963926778d08485, type: 3}
+  - sprite: {fileID: 981695117, guid: 5b08f46a5cbab3a47a429071e21f8e41, type: 3}
     value: 1
-  - sprite: {fileID: -1974946787, guid: 8dc7437958f162f43963926778d08485, type: 3}
+  - sprite: {fileID: -477825063, guid: 5b08f46a5cbab3a47a429071e21f8e41, type: 3}
     value: 2
-  - sprite: {fileID: -1450669755, guid: 8dc7437958f162f43963926778d08485, type: 3}
+  - sprite: {fileID: -1976610683, guid: 5b08f46a5cbab3a47a429071e21f8e41, type: 3}
     value: 3
-  - sprite: {fileID: 1900912487, guid: 8dc7437958f162f43963926778d08485, type: 3}
+  - sprite: {fileID: 731827208, guid: 5b08f46a5cbab3a47a429071e21f8e41, type: 3}
     value: 4
-  - sprite: {fileID: 103700646, guid: 8dc7437958f162f43963926778d08485, type: 3}
+  - sprite: {fileID: -1017589396, guid: 5b08f46a5cbab3a47a429071e21f8e41, type: 3}
     value: 5
-  - sprite: {fileID: -183222731, guid: 8dc7437958f162f43963926778d08485, type: 3}
+  - sprite: {fileID: 1550030061, guid: 5b08f46a5cbab3a47a429071e21f8e41, type: 3}
     value: 6

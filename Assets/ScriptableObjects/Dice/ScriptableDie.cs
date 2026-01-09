@@ -6,13 +6,11 @@ using System;
 [CreateAssetMenu(fileName = "ScriptableDie", menuName = "ScriptableObjects/ScriptableDie")]
 public class ScriptableDie : ScriptableObject
 {
-    [System.Serializable]
-    public struct Face {
-        public Sprite sprite;
-        public int value;
-    }
-
-    [SerializeField] public Face[] faces;
+    // Face struct:
+    //   Sprite sprite
+    //   int value
+    [SerializeField] public Die.Face[] faces;
+    public int NumFaces { get { return faces.Length; } }
 
     private SpriteRenderer spriteRenderer;
 }

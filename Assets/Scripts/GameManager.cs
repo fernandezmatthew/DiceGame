@@ -17,8 +17,11 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        //Find scene objects
         dice = FindObjectsOfType<Die>();
         cam = FindObjectOfType<Camera>();
+
+        //Subscribe to each die's "finishedRolling" event
         if (dice != null)
         {
             foreach (Die die in dice)
@@ -28,7 +31,22 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void OnEnable() {}
+    private void Update()
+    {
+        
+    }
+
+    void OnEnable() {
+        //Subscribe to each die's "finishedRolling" event
+        //This won't happen on start up cuz dice will == null. So we will do it in start(). But if we re-enable, we want the events back.
+        if (dice != null)
+        {
+            foreach (Die die in dice)
+            {
+                die.finishedRolling.AddListener(DecrementDiceRolling);
+            }
+        }
+    }
 
     private void OnDisable()
     {
@@ -41,13 +59,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    
+    //On Event Trigger Functions
+
     public void RollDice() {
         if (dice != null) {
             if (diceRolling == 0)
             {
                 foreach (Die die in dice)
                 {
-                    if (!die.isLocked) {
+                    if (!die.IsLocked) {
                         diceRolling++;
                         float rollLength = UnityEngine.Random.Range(.8f, 1.2f);
                         die.Roll(rollLength);
@@ -71,7 +92,7 @@ public class GameManager : MonoBehaviour
         {
             int sum = 0;
             foreach (Die die in dice) {
-                sum += die.scriptableDie.faces[die.currentFaceIndex].value;
+                sum += die.CurrentFace.value;
             }
             newSum.Invoke(sum.ToString());
         }
