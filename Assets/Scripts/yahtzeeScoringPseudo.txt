@@ -2,26 +2,23 @@ scorecard component
 dictionary of scoreName -> scoreEntry
 
 scoreEntry:
-	int score
-	bool filled
-// could just have score = -1 by default, no need for boolean. or private int score, public bool isFilled { get {return score > -1}}
-
-for each scoreType in dictionary, scoreEntry.CalculatePotential
-
+	int score = -1 default
+	int potentialScore = -1 default
+	bool filled = false default
 
 Calculating all possible scores with current roll of dice:
 Sum all 1's, 2's, ... , 6's; store into int[6] faceSums;
 THESE GIVE ALL POTENTIAL SCORES FOR UPPER HALF
-CHeck if bonus eligible. If so: add 35 points.
+Check current scores to see if bonus eligible. If so: add 35 points.
 
 Sum value of all dice; store into int totalSum;
 Find number of all 1's, 2's, ... , 6's; store into int[6] faceQuantities;
 Quantity determines score eligibility for all but chance.
 	If faceQuantities[x] >= 3: 3-of-a-kind eligible, potentialScore = totalSum;
 	If faceQuantities[x] >= 4: 4-of-a-kind eligible, potentialScore = totalSum;
-	If faceQuantities[x] == 5; Yahtzee eligible, potentialScore = 50; Have to incorporate the yahtzee bonus as well, shouldn't be hard: bonusCount = 0; increment if yahtzee scored
-																after 1st. Player scores a different entry for that turn.
-																Add 50 per yahtzee bonus.
+	If faceQuantities[x] == 5; Yahtzee eligible, potentialScore = 50; Have to incorporate the yahtzee bonus as well, shouldn't be hard: bonusCount = 0; increment if player scores an
+																an entry while having yahtzee eligible and yahtzee filled.
+																Add 50 per yahtzee bonus. (Supposed to be 100)
 	If faceQuantities[x:x+3] > 0: small straight eligibile, potentialScore = 30;
 	If faceQuantities[x:x+4] > 0: large straight eligible, potentialScore = 40;
 	If faceQuantities[x] == 3 && faceQuantities[y] == 2: full house eligible, potentialScore = 25;

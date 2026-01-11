@@ -6,8 +6,7 @@ using UnityEngine.Events;
 public class Die : MonoBehaviour
 {
     [System.Serializable]
-    public struct Face
-    {
+    public struct Face {
         public Sprite sprite;
         public int value;
     }
@@ -28,16 +27,14 @@ public class Die : MonoBehaviour
     public bool IsLocked { get { return isLocked; } }
     public Face[] Faces { get { return scriptableDie.faces;} }
 
-    void Start()
-    {
+    void Start() {
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = scriptableDie.faces[currentFaceIndex].sprite;
         numFaces = scriptableDie.faces.Length;
         InstantiateHightlight();
     }
 
-    void Update()
-    {
+    void Update() {
         
     }
 
@@ -82,8 +79,7 @@ public class Die : MonoBehaviour
     }
 
     public void ToggleLock() {
-        if (isLocked)
-        {
+        if (isLocked) {
             highlight.SetActive(false);
         }
         else {

@@ -4,11 +4,7 @@ using UnityEngine;
 using System;
 
 [CreateAssetMenu(fileName = "ScriptableDie", menuName = "ScriptableObjects/ScriptableDie")]
-public class ScriptableDie : ScriptableObject
-{
-    // Face struct:
-    //   Sprite sprite
-    //   int value
+public class ScriptableDie : ScriptableObject {
     [SerializeField] public Die.Face[] faces;
     public int NumFaces { get { return faces.Length; } }
 
