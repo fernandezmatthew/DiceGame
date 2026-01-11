@@ -4,14 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class YahtzeeScoreEntryDisplay : MonoBehaviour
+public class ScoreEntryDisplay : MonoBehaviour
 {
     public TMP_Text entryNameText;
     public TMP_Text scoreText;
     public TMP_Text potentialScoreText;
     private bool isFilled;
 
-    private YahtzeeScoreSheet.YahtzeeScoreEntry scoreEntry;
+    private ScoreSheet.ScoreEntry scoreEntry;
 
     void Update() {
         //This can be moved to an event so its not checking every frame
@@ -28,7 +28,7 @@ public class YahtzeeScoreEntryDisplay : MonoBehaviour
     }
 
 
-    public void SetEntry(YahtzeeScoreSheet.YahtzeeScoreEntry scoreEntry) { 
+    public void SetEntry(ScoreSheet.ScoreEntry scoreEntry) { 
         this.scoreEntry = scoreEntry;
         entryNameText.text = scoreEntry.displayName;
         scoreText.text = scoreEntry.score.ToString();
