@@ -4,5 +4,11 @@ using UnityEngine;
 
 public class ScoreSheetDisplay : MonoBehaviour
 {
-    public Transform targetTransform;
+    public List<GameObject> displayPanels = new List<GameObject>();
+
+    private void Start() {
+        foreach (GameObject panel in displayPanels) {
+            Instantiate(panel);
+        }
+    }
 }
