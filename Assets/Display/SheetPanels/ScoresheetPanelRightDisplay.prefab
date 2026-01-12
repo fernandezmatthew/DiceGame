@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3457802544096019816}
   - component: {fileID: 6637713236944010445}
   m_Layer: 5
-  m_Name: ScoreSheetR
+  m_Name: ScoresheetPanelRightDisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -11,7 +11,7 @@ public class ScoreEntryDisplay : MonoBehaviour
     public TMP_Text potentialScoreText;
     private bool isFilled;
 
-    private ScoreSheet.ScoreEntry scoreEntry;
+    private Scoresheet.ScoreEntry scoreEntry;
 
     void Update() {
         //This can be moved to an event so its not checking every frame
@@ -28,7 +28,7 @@ public class ScoreEntryDisplay : MonoBehaviour
     }
 
 
-    public void SetEntry(ScoreSheet.ScoreEntry scoreEntry) { 
+    public void SetEntry(Scoresheet.ScoreEntry scoreEntry) { 
         this.scoreEntry = scoreEntry;
         entryNameText.text = scoreEntry.displayName;
         scoreText.text = scoreEntry.score.ToString();

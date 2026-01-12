@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScoreSheet {
+public class Scoresheet {
     public enum ScoreType {
         Ones,
         Twos,
@@ -37,7 +37,7 @@ public class ScoreSheet {
         return entries[scoreType];
     }
 
-    public ScoreSheet() {
+    public Scoresheet() {
         entries = new ScoreEntry[13];
         string[] yahtzeeScoreDisplayNames = {
             "Ones",

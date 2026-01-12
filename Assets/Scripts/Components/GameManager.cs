@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     public UnityEvent diceRollFinished;
     public UnityEvent toggleLockDie;
 
-    private ScoreSheet scoreSheet;
+    private Scoresheet scoreSheet;
     private ScoreEntryDisplay[] entryDisplays;
 
     void OnEnable() {
@@ -50,8 +50,10 @@ public class GameManager : MonoBehaviour
         }
 
         //Make yahtzee scoresheet
-        scoreSheet = new ScoreSheet();
-        ScoreSheet.ScoreEntry[] yahtzeeEntries = scoreSheet.Entries;
+        scoreSheet = new Scoresheet();
+        ScoresheetDisplay scoreSheetDisplay = new ScoresheetDisplay();
+
+        Scoresheet.ScoreEntry[] yahtzeeEntries = scoreSheet.Entries;
         entryDisplays = FindObjectsOfType<ScoreEntryDisplay>();
         for (int i = 0; i < entryDisplays.Length; i++) {
             entryDisplays[i].SetEntry(yahtzeeEntries[i]);
