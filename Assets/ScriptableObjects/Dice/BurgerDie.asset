@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7d950a28f534a14eb7af0303e67404f, type: 3}
+  m_Name: BurgerDie
+  m_EditorClassIdentifier: 
+  faces:
+  - sprite: {fileID: -551439231, guid: dfc5628e588f51c4aa8d25393b3bd103, type: 3}
+    value: 1
+  - sprite: {fileID: 463238505, guid: dfc5628e588f51c4aa8d25393b3bd103, type: 3}
+    value: 2
+  - sprite: {fileID: -135112197, guid: dfc5628e588f51c4aa8d25393b3bd103, type: 3}
+    value: 3
+  - sprite: {fileID: 969493492, guid: dfc5628e588f51c4aa8d25393b3bd103, type: 3}
+    value: 4
+  - sprite: {fileID: -496899948, guid: dfc5628e588f51c4aa8d25393b3bd103, type: 3}
+    value: 5
+  - sprite: {fileID: -822027502, guid: dfc5628e588f51c4aa8d25393b3bd103, type: 3}
+    value: 6

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3ed404794b66ec545bd12093a25b3610
+guid: dfc5628e588f51c4aa8d25393b3bd103
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -136,7 +136,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PicnicDie_0
+      name: BurgerDie_0
       rect:
         serializedVersion: 2
         x: 0
@@ -150,14 +150,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6d341909c908c36448fc7275b17746f3
-      internalID: 586349661
+      spriteID: c09fbad156f27844b99d2eb872919c5f
+      internalID: -551439231
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PicnicDie_1
+      name: BurgerDie_1
       rect:
         serializedVersion: 2
         x: 512
@@ -171,14 +171,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 04e45cfff05c2764d9eb61f1493b14df
-      internalID: -1695902446
+      spriteID: 25d0952ae74d51e4294f95f67b840812
+      internalID: 463238505
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PicnicDie_2
+      name: BurgerDie_2
       rect:
         serializedVersion: 2
         x: 1024
@@ -192,14 +192,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 22e28c1288a15dd4e8fda99930b80242
-      internalID: 1964370743
+      spriteID: 97e39ec4dee3c6944b3eb40d7918f888
+      internalID: -135112197
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PicnicDie_3
+      name: BurgerDie_3
       rect:
         serializedVersion: 2
         x: 0
@@ -213,14 +213,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 061ac802ca2657a46a3d8764e396ca14
-      internalID: -192837364
+      spriteID: cb1afbdb0cf43f64395f295b7789221d
+      internalID: 969493492
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PicnicDie_4
+      name: BurgerDie_4
       rect:
         serializedVersion: 2
         x: 512
@@ -234,14 +234,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 98a1f8ed523fde548ad0f9a231383263
-      internalID: -185508277
+      spriteID: f33a282a3c13b7947b46231df40ce1a8
+      internalID: -496899948
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PicnicDie_5
+      name: BurgerDie_5
       rect:
         serializedVersion: 2
         x: 1024
@@ -255,8 +255,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 87acc1f7d82134648b9e6aa7aeb29ae5
-      internalID: 581706239
+      spriteID: 877f695811f08e84493916e7f7914a86
+      internalID: -822027502
       vertices: []
       indices: 
       edges: []
@@ -264,7 +264,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: f19b9d3103ba8724cb6a08a364e24a93
     internalID: 0
     vertices: []
     indices: 
@@ -272,12 +272,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      PicnicDie_0: 586349661
-      PicnicDie_1: -1695902446
-      PicnicDie_2: 1964370743
-      PicnicDie_3: -192837364
-      PicnicDie_4: -185508277
-      PicnicDie_5: 581706239
+      BurgerDie_0: -551439231
+      BurgerDie_1: 463238505
+      BurgerDie_2: -135112197
+      BurgerDie_3: 969493492
+      BurgerDie_4: -496899948
+      BurgerDie_5: -822027502
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

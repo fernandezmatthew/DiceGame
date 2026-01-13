@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4b2d36232fd6e3c4eb4f7cc2b36d47fe
+guid: e6ebdd7321ff1814c95a6edc7cdb5c34
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -136,7 +136,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SmokyBlueDie_0
+      name: KnightDie_0
       rect:
         serializedVersion: 2
         x: 0
@@ -150,14 +150,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7c3c6cb2d8910dd41a9d481a592e90d5
-      internalID: -630051930
+      spriteID: 7b2d8c70c0a19994c9d3fe01eaddaf87
+      internalID: -281796235
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SmokyBlueDie_1
+      name: KnightDie_1
       rect:
         serializedVersion: 2
         x: 512
@@ -171,14 +171,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 987081cb2cf702541a6367ba5c4bd3fa
-      internalID: 1522379175
+      spriteID: 16967eeb7d7256340a0c208cf3c325d5
+      internalID: -1665438315
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SmokyBlueDie_2
+      name: KnightDie_2
       rect:
         serializedVersion: 2
         x: 1024
@@ -192,14 +192,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9912f01c9464edb4596e5565cb252c60
-      internalID: -1211836599
+      spriteID: 93b36f727f6da484b88500c303e4fb00
+      internalID: 633661917
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SmokyBlueDie_3
+      name: KnightDie_3
       rect:
         serializedVersion: 2
         x: 0
@@ -213,14 +213,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1fe653dbf7cfa4448a139931aa593e7c
-      internalID: -1049597088
+      spriteID: 64f9ffecdedb27740ad5ea5e74bb6599
+      internalID: 2049681724
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SmokyBlueDie_4
+      name: KnightDie_4
       rect:
         serializedVersion: 2
         x: 512
@@ -234,14 +234,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aaee085bbb8973243b6388ec2e8a5a9d
-      internalID: -826475748
+      spriteID: 5c75a628e713e554f8d9e70adb7f63d4
+      internalID: 1392299121
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SmokyBlueDie_5
+      name: KnightDie_5
       rect:
         serializedVersion: 2
         x: 1024
@@ -255,8 +255,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 42177f9116dd16d4bacbbe458fba3185
-      internalID: 693743274
+      spriteID: 7506d1b0cf381f94dadd2ea5e29e4bc4
+      internalID: 1839572832
       vertices: []
       indices: 
       edges: []
@@ -264,7 +264,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 75da6df1adf29894fbc3b3401e810b91
+    spriteID: 28b0d0bf04c812c43bb4076de2d6e0cb
     internalID: 0
     vertices: []
     indices: 
@@ -272,12 +272,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      SmokyBlueDie_0: -630051930
-      SmokyBlueDie_1: 1522379175
-      SmokyBlueDie_2: -1211836599
-      SmokyBlueDie_3: -1049597088
-      SmokyBlueDie_4: -826475748
-      SmokyBlueDie_5: 693743274
+      KnightDie_0: -281796235
+      KnightDie_1: -1665438315
+      KnightDie_2: 633661917
+      KnightDie_3: 2049681724
+      KnightDie_4: 1392299121
+      KnightDie_5: 1839572832
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

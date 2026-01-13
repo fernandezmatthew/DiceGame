@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: RedDie
   m_EditorClassIdentifier: 
   faces:
-  - sprite: {fileID: -51802690, guid: fafb1230c85398a4f9fcb41199b78cb5, type: 3}
+  - sprite: {fileID: 929887965, guid: 34919d4926baa0a46ad9b376114a8727, type: 3}
     value: 1
-  - sprite: {fileID: 329738646, guid: fafb1230c85398a4f9fcb41199b78cb5, type: 3}
+  - sprite: {fileID: 215436176, guid: 34919d4926baa0a46ad9b376114a8727, type: 3}
     value: 2
-  - sprite: {fileID: 1011475171, guid: fafb1230c85398a4f9fcb41199b78cb5, type: 3}
+  - sprite: {fileID: -269079641, guid: 34919d4926baa0a46ad9b376114a8727, type: 3}
     value: 3
-  - sprite: {fileID: 975155241, guid: fafb1230c85398a4f9fcb41199b78cb5, type: 3}
+  - sprite: {fileID: 1884050983, guid: 34919d4926baa0a46ad9b376114a8727, type: 3}
     value: 4
-  - sprite: {fileID: -1309452941, guid: fafb1230c85398a4f9fcb41199b78cb5, type: 3}
+  - sprite: {fileID: -1016306646, guid: 34919d4926baa0a46ad9b376114a8727, type: 3}
     value: 5
-  - sprite: {fileID: -1767390421, guid: fafb1230c85398a4f9fcb41199b78cb5, type: 3}
+  - sprite: {fileID: 1393702210, guid: 34919d4926baa0a46ad9b376114a8727, type: 3}
     value: 6
