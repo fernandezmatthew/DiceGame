@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,11 +12,16 @@ public class GameManager : MonoBehaviour
 
     int diceRolling = 0;
 
+    //These two should have ui elements
+    private int rollsRemaining;
+    private int currentRound;
+
     public UnityEvent diceRollFinished;
     public UnityEvent toggleLockDie;
 
-    private Scoresheet scoreSheet;
-    private ScoreEntryDisplay[] entryDisplays;
+    private Scoresheet scoresheet;
+    //UI STUFF
+    public ScoresheetDisplay scoresheetDisplay;
 
     void OnEnable() {
         //Subscribe to each die's "finishedRolling" event
@@ -24,6 +30,9 @@ public class GameManager : MonoBehaviour
             foreach (Die die in dice) {
                 die.finishedRolling.AddListener(DecrementDiceRolling);
             }
+        }
+        if (scoresheet != null) {
+            scoresheet.entryClicked.AddListener(AttemptFillEntry);
         }
     }
 
@@ -34,6 +43,13 @@ public class GameManager : MonoBehaviour
                 die.finishedRolling.RemoveListener(DecrementDiceRolling);
             }
         }
+        if (scoresheet != null) {
+            scoresheet.entryClicked.RemoveListener(AttemptFillEntry);
+        }
+    }
+
+    private void Update() {
+
     }
 
     private void Start()
@@ -50,27 +66,16 @@ public class GameManager : MonoBehaviour
         }
 
         //Make yahtzee scoresheet
-        scoreSheet = new Scoresheet();
-        ScoresheetDisplay scoreSheetDisplay = new ScoresheetDisplay();
+        scoresheet = new Scoresheet();
+        scoresheet.entryClicked.AddListener(AttemptFillEntry);
+        scoresheet.entryFilled.AddListener(UpdateRound);
 
-        Scoresheet.ScoreEntry[] yahtzeeEntries = scoreSheet.Entries;
-        entryDisplays = FindObjectsOfType<ScoreEntryDisplay>();
-        for (int i = 0; i < entryDisplays.Length; i++) {
-            entryDisplays[i].SetEntry(yahtzeeEntries[i]);
-        }
+        rollsRemaining = 3;
+        currentRound = 1;
+
+        //THIS IS ALL UI STUFF
+        scoresheetDisplay.Init(scoresheet);
     }
-
-    private void Update() {
-
-    }
-
-    private void UpdateScoreSheet(in Die[] dice) {
-        scoreSheet.UpdateScoreSheet(dice);
-        for (int i = 0; i < entryDisplays.Length; i++) {
-            entryDisplays[i].UpdateDisplay();
-        }
-    }
-
 
     //On Event Trigger Functions
     //*************************************
@@ -78,7 +83,7 @@ public class GameManager : MonoBehaviour
     //Triggers when button is pressed
     public void RollDice() {
         if (dice != null) {
-            if (diceRolling == 0) {
+            if (diceRolling == 0 && rollsRemaining > 0 && currentRound <= 13) {
                 foreach (Die die in dice) {
                     if (!die.IsLocked) {
                         diceRolling++;
@@ -87,7 +92,8 @@ public class GameManager : MonoBehaviour
                     }
                 }
                 if (diceRolling > 0) {
-                    // this is a new roll. Increment number of rolls.
+                    rollsRemaining--;
+                    //UPDATE DISPLAY?
                 }
             }
         }
@@ -98,32 +104,69 @@ public class GameManager : MonoBehaviour
         diceRolling -= 1;
         if (diceRolling == 0) {
             diceRollFinished.Invoke();
-            UpdateSumOfDice();
+            UpdateScoresheetPotentials(dice);
+            UpdateScoresheetDisplay();
         }
+    }
+
+    private void UpdateScoresheetDisplay() {
+        scoresheetDisplay.UpdateScoresheetDisplay();
     }
 
     //Triggers from DecrementDiceRolling if all dice are finished
-    public void UpdateSumOfDice() { 
-        if (dice != null) {
-            int sum = 0;
-            foreach (Die die in dice) {
-                sum += die.CurrentFace.value;
-            }
-        }
-        UpdateScoreSheet(dice);
+    private void UpdateScoresheetPotentials(in Die[] dice) {
+        scoresheet.UpdatePotentials(dice);
     }
 
-    //Triggers when left mouse button clicked
-    public void CheckWhatsClicked(InputAction.CallbackContext ctx) {
+    //triggers from scoresheet.entryClicked
+    public void AttemptFillEntry(Scoresheet.ScoreEntry scoreEntry) {
+        //Make sure dice not rolling
+        if (diceRolling == 0) {
+            //Make sure player has made at least one roll
+            if (rollsRemaining < 3) { 
+                scoresheet.FillEntry(scoreEntry);
+            }
+        }
+    }
+
+    //Called from scoresheet.entryFilled
+    public void UpdateRound() {
+        UpdateScoresheetDisplay();
+        foreach (var die in dice) {
+            if (die.IsLocked) {
+                die.transform.Translate(new Vector3(0, -.2f, 0));
+                die.ToggleLock();
+            }
+        }
+        if (currentRound < 13) {
+            currentRound++;
+            rollsRemaining = 3;
+        }
+        else {
+            rollsRemaining = 0;
+            //Do game end stuff
+        }
+    }
+
+    //Triggers when left mouse button clicked at all
+    public void CheckIfDieClicked(InputAction.CallbackContext ctx) {
         if (ctx.phase == InputActionPhase.Started) {
-            // Check if clicked on a die.
             Ray ray = cam.ScreenPointToRay(Mouse.current.position.ReadValue());
             RaycastHit2D hit = Physics2D.GetRayIntersection(ray);
 
+            // Check if clicked on a die.
             if (hit.collider != null) {
                 foreach (Die die in dice) {
                     if (die.gameObject == hit.collider.gameObject) {
-                        if (diceRolling == 0) {
+                        //Toggle die lock if dice not currently rolling
+                        if (diceRolling == 0 && rollsRemaining < 3) {
+                            if (!die.IsLocked) {
+                                die.transform.Translate(new Vector3(0, .2f, 0));
+                            }
+                            else {
+                                die.transform.Translate(new Vector3(0, -.2f, 0));
+                            }
+                            
                             die.ToggleLock();
                             break;
                         }
@@ -131,5 +174,10 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    //called from 'reset' inputaction
+    public void Restart() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

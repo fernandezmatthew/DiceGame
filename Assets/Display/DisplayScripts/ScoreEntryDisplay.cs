@@ -3,29 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.EventSystems;
+using UnityEngine.Events;
 
-public class ScoreEntryDisplay : MonoBehaviour
+public class ScoreEntryDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
+    public UnityEvent<Scoresheet.ScoreEntry> entryClicked;
+
     public TMP_Text entryNameText;
     public TMP_Text scoreText;
     public TMP_Text potentialScoreText;
     private bool isFilled;
 
     private Scoresheet.ScoreEntry scoreEntry;
-
-    void Update() {
-        //This can be moved to an event so its not checking every frame
-        if (scoreEntry != null) {
-            if (isFilled) {
-                scoreText.enabled = true;
-                potentialScoreText.enabled = false;
-            }
-            else {
-                scoreText.enabled = false;
-                potentialScoreText.enabled = true;
-            }
-        }
-    }
 
 
     public void SetEntry(Scoresheet.ScoreEntry scoreEntry) { 
@@ -34,6 +24,9 @@ public class ScoreEntryDisplay : MonoBehaviour
         scoreText.text = scoreEntry.score.ToString();
         potentialScoreText.text = scoreEntry.potentialScore.ToString();
         isFilled = scoreEntry.isFilled;
+
+        scoreText.enabled = false;
+        potentialScoreText.enabled = false;
     }
 
     public void UpdateDisplay() {
@@ -41,5 +34,24 @@ public class ScoreEntryDisplay : MonoBehaviour
         scoreText.text = scoreEntry.score.ToString();
         potentialScoreText.text = scoreEntry.potentialScore.ToString();
         isFilled = scoreEntry.isFilled;
+        if (isFilled) {
+            scoreText.enabled = true;
+            potentialScoreText.enabled = false;
+        }
+    }
+
+    //Functions triggered from Mouse
+    public void OnPointerEnter(PointerEventData eventData) {
+        if (!isFilled) {
+            potentialScoreText.enabled = true;
+        }
+    }
+
+    public void OnPointerExit(PointerEventData eventData) { 
+        potentialScoreText.enabled = false;
+    }
+
+    public void OnPointerClick(PointerEventData eventData) {
+        entryClicked.Invoke(scoreEntry);
     }
 }

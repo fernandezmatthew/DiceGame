@@ -456,6 +456,7 @@ MonoBehaviour:
   toggleLockDie:
     m_PersistentCalls:
       m_Calls: []
+  scoresheetDisplay: {fileID: 1727335120}
 --- !u!1 &479987237
 GameObject:
   m_ObjectHideFlags: 0
@@ -487,7 +488,6 @@ Transform:
   m_Children:
   - {fileID: 364013249}
   - {fileID: 1080235997}
-  - {fileID: 1481612681}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &705507993
@@ -1034,7 +1034,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.17254902, g: 0.22745098, b: 0.2784314, a: 1}
+  m_Color: {r: 0.50980395, g: 0.34509805, b: 0.62352943, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1451,7 +1451,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 364013251}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: CheckWhatsClicked
+        m_MethodName: CheckIfDieClicked
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1463,6 +1463,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: b4c7fbb1-4bf7-4c2b-87b3-8ba7ada1114b
     m_ActionName: Player/Select[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 364013251}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: Restart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 64ca9924-4ed8-4b38-88d5-7a2cc6db05d1
+    m_ActionName: Player/Restart[/Keyboard/r]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -1545,37 +1561,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1481612680
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1481612681}
-  m_Layer: 0
-  m_Name: DislayManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1481612681
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1481612680}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 479987238}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1638715389
 GameObject:
@@ -1772,15 +1757,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b57709c9cecedac40836ca61b324b586, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayPanels:
-  - {fileID: 2976868934178177740, guid: 31ea48c1cf535104f86f588dd1e58a93, type: 3}
-  - {fileID: 7062807662187181106, guid: e0eed81e9405d6a4a94814601ffcdca0, type: 3}
-  - {fileID: 1799517933481235718, guid: bc03dafab32b1ee4bb696fd7c2bfc1c7, type: 3}
-  - {fileID: 3218040005794621303, guid: b6bd61ee2a7e4c94b87f1febd2eeddb5, type: 3}
   sheetDisplayPanelLeft: {fileID: 2976868934178177740, guid: 31ea48c1cf535104f86f588dd1e58a93, type: 3}
   sheetDisplayPanelRight: {fileID: 7062807662187181106, guid: e0eed81e9405d6a4a94814601ffcdca0, type: 3}
   sheetDisplayPanelMiddle: {fileID: 1799517933481235718, guid: bc03dafab32b1ee4bb696fd7c2bfc1c7, type: 3}
   sheetDisplayPanelTotal: {fileID: 3218040005794621303, guid: b6bd61ee2a7e4c94b87f1febd2eeddb5, type: 3}
+  scoreEntryLeftDisplay: {fileID: 3295018700604155395, guid: 491bc78f09fdf0f4aa7c7ab0a5e48532, type: 3}
+  scoreEntryRightDisplay: {fileID: 4182986650847510577, guid: 5c6a9146f27a2914190df0ca9037219d, type: 3}
+  detailEntryLargeDisplay: {fileID: 5671535135096901780, guid: 2de4e673938d042458d34d15aa664181, type: 3}
+  detailEntrySmallDisplay: {fileID: 8707459355319273708, guid: c9acb43661c8fa040bd3f4be93280b3f, type: 3}
+  detailEntryTotalDisplay: {fileID: 920121738184207146, guid: 75b5c28ba045da24a9bd1a3af89a4125, type: 3}
 --- !u!1 &1838090136
 GameObject:
   m_ObjectHideFlags: 0
