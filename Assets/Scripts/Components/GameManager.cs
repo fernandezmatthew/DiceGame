@@ -21,32 +21,11 @@ public class GameManager : MonoBehaviour
 
     private Scoresheet scoresheet;
     //UI STUFF
-    public ScoresheetDisplay scoresheetDisplay;
-
-    void OnEnable() {
-        //Subscribe to each die's "finishedRolling" event
-        //This won't happen on start up cuz dice will == null. So we will do it in start(). But if we re-enable, we want the events back.
-        if (dice != null) {
-            foreach (Die die in dice) {
-                die.finishedRolling.AddListener(DecrementDiceRolling);
-            }
-        }
-        if (scoresheet != null) {
-            scoresheet.entryClicked.AddListener(AttemptFillEntry);
-        }
-    }
-
-    private void OnDisable()
-    {
-        if (dice != null) {
-            foreach (Die die in dice) {
-                die.finishedRolling.RemoveListener(DecrementDiceRolling);
-            }
-        }
-        if (scoresheet != null) {
-            scoresheet.entryClicked.RemoveListener(AttemptFillEntry);
-        }
-    }
+    public Canvas canvas;
+    public ScoresheetDisplay scoresheetDisplayPrefab;
+    private ScoresheetDisplay scoresheetDisplay;
+    public GameInfoDisplay rollsLeftDisplay;
+    public GameInfoDisplay currentRoundDisplay;
 
     private void Update() {
 
@@ -74,7 +53,9 @@ public class GameManager : MonoBehaviour
         currentRound = 1;
 
         //THIS IS ALL UI STUFF
+        scoresheetDisplay = Instantiate(scoresheetDisplayPrefab, canvas.transform);
         scoresheetDisplay.Init(scoresheet);
+        UpdateGameInfoDisplays();
     }
 
     //On Event Trigger Functions
@@ -93,7 +74,7 @@ public class GameManager : MonoBehaviour
                 }
                 if (diceRolling > 0) {
                     rollsRemaining--;
-                    //UPDATE DISPLAY?
+                    UpdateGameInfoDisplays();
                 }
             }
         }
@@ -111,6 +92,11 @@ public class GameManager : MonoBehaviour
 
     private void UpdateScoresheetDisplay() {
         scoresheetDisplay.UpdateScoresheetDisplay();
+    }
+
+    private void UpdateGameInfoDisplays() {
+        rollsLeftDisplay.UpdateDisplay(rollsRemaining);
+        currentRoundDisplay.UpdateDisplay(currentRound);
     }
 
     //Triggers from DecrementDiceRolling if all dice are finished
@@ -132,19 +118,24 @@ public class GameManager : MonoBehaviour
     //Called from scoresheet.entryFilled
     public void UpdateRound() {
         UpdateScoresheetDisplay();
+        UnlockAllDice();
+        if (currentRound < 13) {
+            currentRound++;
+            rollsRemaining = 3;
+            UpdateGameInfoDisplays();
+        }
+        else {
+            rollsRemaining = 0;
+            //Do game end stuff
+        }
+    }
+
+    private void UnlockAllDice() {
         foreach (var die in dice) {
             if (die.IsLocked) {
                 die.transform.Translate(new Vector3(0, -.2f, 0));
                 die.ToggleLock();
             }
-        }
-        if (currentRound < 13) {
-            currentRound++;
-            rollsRemaining = 3;
-        }
-        else {
-            rollsRemaining = 0;
-            //Do game end stuff
         }
     }
 
@@ -178,6 +169,22 @@ public class GameManager : MonoBehaviour
 
     //called from 'reset' inputaction
     public void Restart() {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //instead of reloading the current scene, lets reset the game in terms of data.
+        UnlockAllDice();
+        currentRound = 1;
+        rollsRemaining = 3;
+        scoresheet.ResetScoresheet();
+        scoresheetDisplay.UpdateScoresheetDisplay();
+        UpdateGameInfoDisplays();
+    }
+
+    public void Quit() {
+#if UNITY_STANDALONE
+        Application.Quit();
+#endif
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
     }
 }

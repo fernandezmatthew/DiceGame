@@ -38,6 +38,9 @@ public class ScoreEntryDisplay : MonoBehaviour, IPointerEnterHandler, IPointerEx
             scoreText.enabled = true;
             potentialScoreText.enabled = false;
         }
+        else {
+            scoreText.enabled = false;
+        }
     }
 
     //Functions triggered from Mouse

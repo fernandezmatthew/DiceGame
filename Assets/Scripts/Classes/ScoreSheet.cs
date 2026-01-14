@@ -182,6 +182,22 @@ public class Scoresheet {
             entry.potentialScore = 0;
         }
     }
+
+    public void ResetScoresheet() {
+        ResetPotentials();
+        foreach (var entry in scoreEntries) {
+            entry.score = 0;
+            entry.isFilled = false;
+        }
+        foreach (var entry in detailEntries) {
+            entry.score = 0;
+        }
+        upperScore = 0;
+        lowerScore = 0;
+        totalScore = 0;
+        hasBonus = false;
+        extraYahtzeeCount = 0;
+    }
     //Called from scoresheetDisplay.entryClicked
     public void EntryClicked(ScoreEntry scoreEntry) {
         entryClicked.Invoke(scoreEntry);
