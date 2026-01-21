@@ -17,13 +17,13 @@ public class Die : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private int currentFaceIndex = 0;
     private int numFaces;
-    private int rollingCount = 0;
+    private int rollingCoroutineCount = 0;
     private bool isLocked = false;
     private GameObject highlight;
 
     public Face CurrentFace { get { return scriptableDie.faces[currentFaceIndex]; } }
     public int NumFaces { get { return scriptableDie.faces.Length;}}
-    public bool IsRolling { get { return rollingCount > 0; } }
+    public bool IsRolling { get { return rollingCoroutineCount > 0; } }
     public bool IsLocked { get { return isLocked; } }
     public Face[] Faces { get { return scriptableDie.faces;} }
 
@@ -31,16 +31,12 @@ public class Die : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = scriptableDie.faces[currentFaceIndex].sprite;
         numFaces = scriptableDie.faces.Length;
-        InstantiateHightlight();
-    }
-
-    void Update() {
-        
+        InstantiateHighlight();
     }
 
     public void Roll(float length) {
         if (!isLocked) {
-            rollingCount = 2;
+            rollingCoroutineCount = 2;
             StartCoroutine(RollNumber(length));
             StartCoroutine(SpinDie(length));
         }
@@ -58,8 +54,8 @@ public class Die : MonoBehaviour
             elapsedTime += Time.deltaTime + switchTime;
             yield return new WaitForSeconds(switchTime);
         }
-        rollingCount -= 1;
-        if (rollingCount == 0) {
+        rollingCoroutineCount -= 1;
+        if (rollingCoroutineCount == 0) {
             finishedRolling.Invoke();
         }
     }
@@ -72,8 +68,8 @@ public class Die : MonoBehaviour
             yield return null;
         }
         transform.rotation = Quaternion.identity;
-        rollingCount -= 1;
-        if (rollingCount == 0) { 
+        rollingCoroutineCount -= 1;
+        if (rollingCoroutineCount == 0) { 
             finishedRolling.Invoke();
         }
     }
@@ -89,7 +85,14 @@ public class Die : MonoBehaviour
         isLocked = !isLocked;
     }
 
-    private void InstantiateHightlight() {
+    public void Reset() {
+        StopAllCoroutines();
+        currentFaceIndex = 0;
+        spriteRenderer.sprite = scriptableDie.faces[currentFaceIndex].sprite;
+        transform.rotation = Quaternion.identity;
+    }
+
+    private void InstantiateHighlight() {
         highlight = new GameObject("Highlight");
         highlight.SetActive(false);
         highlight.AddComponent<SpriteRenderer>();

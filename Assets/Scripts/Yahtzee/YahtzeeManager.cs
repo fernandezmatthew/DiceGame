@@ -4,38 +4,47 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour
-{
-    Die[] dice;
-    Camera cam;
+public class YahtzeeManager : MonoBehaviour {
+    [HideInInspector] public UnityEvent diceRollFinished;
+    [HideInInspector] public UnityEvent toggleLockDie;
 
-    int diceRolling = 0;
-
-    //These two should have ui elements
+    private Scoresheet scoresheet;
+    private Die[] dice;
+    private Camera cam;
+    private Button rollButton;
+    private PlayerInputActions playerActions;
+    private int diceRolling = 0;
     private int rollsRemaining;
     private int currentRound;
 
-    public UnityEvent diceRollFinished;
-    public UnityEvent toggleLockDie;
-
-    private Scoresheet scoresheet;
     //UI STUFF
     public Canvas canvas;
     public ScoresheetDisplay scoresheetDisplayPrefab;
-    private ScoresheetDisplay scoresheetDisplay;
     public GameInfoDisplay rollsLeftDisplay;
     public GameInfoDisplay currentRoundDisplay;
+    private ScoresheetDisplay scoresheetDisplay;
 
-    private void Update() {
+    //Save stuff
+    private YahtzeeSaveHandler saveHandler;
 
-    }
-
-    private void Start()
-    {
+    private void Start() {
         //Find scene objects
         dice = FindObjectsOfType<Die>();
         cam = FindObjectOfType<Camera>();
+        rollButton = FindObjectOfType<Button>();
+
+        playerActions = new PlayerInputActions();
+
+
+        //subscribe to all input functions
+        playerActions.Enable();
+        playerActions.Yahtzee.Select.started += CheckIfDieClicked;
+        playerActions.Yahtzee.Restart.started += Restart;
+        playerActions.Yahtzee.Quit.started += Quit;
+        playerActions.Yahtzee.Save.started += SaveGame;
+        rollButton.onClick.AddListener(TryRollDice);
 
         //Subscribe to each die's "finishedRolling" event
         if (dice != null) {
@@ -56,13 +65,16 @@ public class GameManager : MonoBehaviour
         scoresheetDisplay = Instantiate(scoresheetDisplayPrefab, canvas.transform);
         scoresheetDisplay.Init(scoresheet);
         UpdateGameInfoDisplays();
+
+        //This is all save stuff
+        saveHandler = new YahtzeeSaveHandler();
     }
 
     //On Event Trigger Functions
     //*************************************
 
     //Triggers when button is pressed
-    public void RollDice() {
+    public void TryRollDice() {
         if (dice != null) {
             if (diceRolling == 0 && rollsRemaining > 0 && currentRound <= 13) {
                 foreach (Die die in dice) {
@@ -84,10 +96,15 @@ public class GameManager : MonoBehaviour
     public void DecrementDiceRolling() {
         diceRolling -= 1;
         if (diceRolling == 0) {
-            diceRollFinished.Invoke();
-            UpdateScoresheetPotentials(dice);
-            UpdateScoresheetDisplay();
+            ResolveRollFinished();
         }
+    }
+
+    //Triggers from decrement when dicerolling = 0
+    private void ResolveRollFinished() {
+        diceRollFinished.Invoke();
+        UpdateScoresheetPotentials(dice);
+        UpdateScoresheetDisplay();
     }
 
     private void UpdateScoresheetDisplay() {
@@ -99,7 +116,7 @@ public class GameManager : MonoBehaviour
         currentRoundDisplay.UpdateDisplay(currentRound);
     }
 
-    //Triggers from DecrementDiceRolling if all dice are finished
+    //Triggers from resolveRollFinished() if all dice are finished
     private void UpdateScoresheetPotentials(in Die[] dice) {
         scoresheet.UpdatePotentials(dice);
     }
@@ -109,7 +126,7 @@ public class GameManager : MonoBehaviour
         //Make sure dice not rolling
         if (diceRolling == 0) {
             //Make sure player has made at least one roll
-            if (rollsRemaining < 3) { 
+            if (rollsRemaining < 3) {
                 scoresheet.FillEntry(scoreEntry);
             }
         }
@@ -127,7 +144,22 @@ public class GameManager : MonoBehaviour
         else {
             rollsRemaining = 0;
             //Do game end stuff
+            SaveGame();
         }
+    }
+
+    private void SaveGame() {
+        int[] scoreEntryValues = scoresheet.GetScoreEntryValues();
+        int[] detailEntryVaues = scoresheet.GetDetailEntryValues();
+        
+        saveHandler.Save(scoreEntryValues, detailEntryVaues);
+    }
+
+    private void SaveGame(InputAction.CallbackContext ctx) {
+        int[] scoreEntryValues = scoresheet.GetScoreEntryValues();
+        int[] detailEntryVaues = scoresheet.GetDetailEntryValues();
+
+        saveHandler.Save(scoreEntryValues, detailEntryVaues);
     }
 
     private void UnlockAllDice() {
@@ -136,6 +168,12 @@ public class GameManager : MonoBehaviour
                 die.transform.Translate(new Vector3(0, -.2f, 0));
                 die.ToggleLock();
             }
+        }
+    }
+
+    private void ResetAllDice() {
+        foreach (var die in dice) {
+            die.Reset();
         }
     }
 
@@ -157,7 +195,7 @@ public class GameManager : MonoBehaviour
                             else {
                                 die.transform.Translate(new Vector3(0, -.2f, 0));
                             }
-                            
+
                             die.ToggleLock();
                             break;
                         }
@@ -168,18 +206,19 @@ public class GameManager : MonoBehaviour
     }
 
     //called from 'reset' inputaction
-    public void Restart() {
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        //instead of reloading the current scene, lets reset the game in terms of data.
+    public void Restart(InputAction.CallbackContext ctx) {
+        //instead of reloading the current scene, lets reset the game in-place
         UnlockAllDice();
+        ResetAllDice();
         currentRound = 1;
         rollsRemaining = 3;
+        diceRolling = 0;
         scoresheet.ResetScoresheet();
         scoresheetDisplay.UpdateScoresheetDisplay();
         UpdateGameInfoDisplays();
     }
 
-    public void Quit() {
+    public void Quit(InputAction.CallbackContext ctx) {
 #if UNITY_STANDALONE
         Application.Quit();
 #endif

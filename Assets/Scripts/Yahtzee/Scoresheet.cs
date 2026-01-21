@@ -46,6 +46,22 @@ public class Scoresheet {
         return scoreEntries[scoreType];
     }
 
+    public int[] GetScoreEntryValues() {
+        int[] scoreEntryValues = new int[13];
+        for (int i = 0; i < scoreEntries.Length; i++) {
+            scoreEntryValues[i] = scoreEntries[i].score;
+        }
+        return scoreEntryValues;
+    }
+
+    public int[] GetDetailEntryValues() {
+        int[] detailEntryValues = new int[5];
+        for (int i = 0; i < detailEntries.Length; i++) {
+            detailEntryValues[i] = detailEntries[i].score;
+        }
+        return detailEntryValues;
+    }
+
     public DetailEntry GetDetailEntry(int detailType) { 
         return detailEntries[detailType];
     }

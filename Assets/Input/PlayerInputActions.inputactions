@@ -2,7 +2,7 @@
     "name": "PlayerInputActions",
     "maps": [
         {
-            "name": "Player",
+            "name": "Yahtzee",
             "id": "d65663e2-b080-4ed1-8119-576c9ab030a0",
             "actions": [
                 {
@@ -27,6 +27,15 @@
                     "name": "Quit",
                     "type": "Button",
                     "id": "3923f0cb-6712-4239-85c1-16106e35fbc1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Save",
+                    "type": "Button",
+                    "id": "7bd529a3-3ccd-4b28-bdfa-fdd4df6ab83a",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -64,6 +73,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Quit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7ee2f39d-9fd6-491c-aa13-743c1e9acef3",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Save",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
