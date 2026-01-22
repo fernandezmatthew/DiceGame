@@ -121,7 +121,7 @@ public class Scoresheet {
         detailEntries[4].score = totalScore;
     }
 
-    public void UpdatePotentials(in Die[] dice) {
+    public void UpdatePotentials(in YahtzeeDie[] dice) {
         //Gather data necessary to update potential scores
         int[] faceSums = { 0, 0, 0, 0, 0, 0 };
         int[] faceQuantities = { 0, 0, 0, 0, 0, 0 };

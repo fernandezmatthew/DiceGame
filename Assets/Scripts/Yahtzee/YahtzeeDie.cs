@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Die : MonoBehaviour
+public class YahtzeeDie : MonoBehaviour
 {
     [System.Serializable]
     public struct Face {
@@ -11,7 +11,7 @@ public class Die : MonoBehaviour
         public int value;
     }
 
-    public UnityEvent finishedRolling;
+    [HideInInspector] public UnityEvent finishedRolling;
 
     [SerializeField] private ScriptableDie scriptableDie;
     private SpriteRenderer spriteRenderer;
