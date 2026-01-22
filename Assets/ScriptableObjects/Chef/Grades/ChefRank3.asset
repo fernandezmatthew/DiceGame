@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: ChefRank3
   m_EditorClassIdentifier: 
   grade: 3
-  gradeSprite: {fileID: -1691957333, guid: 7fa39108240700d4b8fde28b14e0c538, type: 3}
+  gradeSprite: {fileID: 272872532, guid: f62195a99e7f2864daabc1b6372552de, type: 3}

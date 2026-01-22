@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7fa39108240700d4b8fde28b14e0c538
+guid: f62195a99e7f2864daabc1b6372552de
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -136,7 +136,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ChefGrades_0
+      name: Numbers2_0
       rect:
         serializedVersion: 2
         x: 0
@@ -150,14 +150,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 34750c40e7868204a97e90284e07d115
-      internalID: -182369993
+      spriteID: cec9d884ae4af9047b71182cc315aca7
+      internalID: 196399913
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ChefGrades_1
+      name: Numbers2_1
       rect:
         serializedVersion: 2
         x: 512
@@ -171,14 +171,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1e9c8b951368b8a4fb493f726f8c2eff
-      internalID: 997666561
+      spriteID: 90a183f3b57fe504aa2ca7616bb86f82
+      internalID: 1173496058
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ChefGrades_2
+      name: Numbers2_2
       rect:
         serializedVersion: 2
         x: 1024
@@ -192,14 +192,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f291efdb9d64f944295b44c4b4a49d01
-      internalID: -1691957333
+      spriteID: 62e5b7c00e9cd264b9e3f1fdd9d15248
+      internalID: 272872532
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ChefGrades_3
+      name: Numbers2_3
       rect:
         serializedVersion: 2
         x: 1536
@@ -213,14 +213,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d2e80169c67127c4cb940c88b1bfd57a
-      internalID: -33955550
+      spriteID: 13d319356b7b19643af269de17de31ea
+      internalID: 1907051661
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ChefGrades_4
+      name: Numbers2_4
       rect:
         serializedVersion: 2
         x: 2048
@@ -234,14 +234,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 47f0c17e7d94b2c4dac0f1c4b18ce609
-      internalID: 1865326185
+      spriteID: c5a4a5fb15e247f4a815dd936c7c4f1d
+      internalID: 178372081
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ChefGrades_5
+      name: Numbers2_5
       rect:
         serializedVersion: 2
         x: 0
@@ -255,14 +255,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 074f0618605b40e43b8e603e32c08e48
-      internalID: -302209910
+      spriteID: 5c821ecf796791f4f96e0ce102907abb
+      internalID: 401647149
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ChefGrades_6
+      name: Numbers2_6
       rect:
         serializedVersion: 2
         x: 512
@@ -276,14 +276,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: baae96c009bc4664a9bf1501777d27bb
-      internalID: -1639331230
+      spriteID: 8a587cb7054aa1e40b889f55016e18e0
+      internalID: 1788928184
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ChefGrades_7
+      name: Numbers2_7
       rect:
         serializedVersion: 2
         x: 1024
@@ -297,14 +297,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1df874a8a6297cb4aa3ca12fa72deee3
-      internalID: 336553815
+      spriteID: 7f22e9d7b9f4a384ca30c1145149b6b5
+      internalID: 913660121
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ChefGrades_8
+      name: Numbers2_8
       rect:
         serializedVersion: 2
         x: 1536
@@ -318,14 +318,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bc637aebbf106d24f83a87b10e0aba39
-      internalID: 617906255
+      spriteID: d3a7f09be654d1c4fac80a34de75d505
+      internalID: 2055142841
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ChefGrades_9
+      name: Numbers2_9
       rect:
         serializedVersion: 2
         x: 2048
@@ -339,14 +339,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dc1a1e3cb06e8bc4abf58a96a2f8fa47
-      internalID: 1591248362
+      spriteID: 0622ed827ac92e247841b9658c086e56
+      internalID: -1694167772
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ChefGrades_10
+      name: Numbers2_10
       rect:
         serializedVersion: 2
         x: 0
@@ -360,14 +360,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fa66beb88eb36234fb22a2ae21dbbe23
-      internalID: -2029479838
+      spriteID: 0a928b528b3449b4c829e6d9150b08b7
+      internalID: -519858187
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ChefGrades_11
+      name: Numbers2_11
       rect:
         serializedVersion: 2
         x: 512
@@ -381,14 +381,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1315d4a207fb1ed4eac2f60fd596e6bf
-      internalID: 872167046
+      spriteID: 2b63384540422604b88ad42f9a8d7797
+      internalID: 1709770032
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ChefGrades_12
+      name: Numbers2_12
       rect:
         serializedVersion: 2
         x: 1024
@@ -402,14 +402,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 09795cb162944244a9fc11c257ac112a
-      internalID: -1457713311
+      spriteID: fd4a398af1eba7d4988c5c795cf1f87d
+      internalID: -1094969708
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ChefGrades_13
+      name: Numbers2_13
       rect:
         serializedVersion: 2
         x: 1536
@@ -423,14 +423,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: adeb4fbed97c25d49a85423702a08ab9
-      internalID: -1674197438
+      spriteID: 81691e124ed8eb1449f5208111fda214
+      internalID: -299499959
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ChefGrades_14
+      name: Numbers2_14
       rect:
         serializedVersion: 2
         x: 2048
@@ -444,14 +444,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eb915e943a1190041b145fcef879f4ec
-      internalID: -986852801
+      spriteID: 0e51dd4b9d10bbf4795c1dd9dcff89c2
+      internalID: -928230137
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ChefGrades_15
+      name: Numbers2_15
       rect:
         serializedVersion: 2
         x: 0
@@ -465,14 +465,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 393ef6bf976870349b1668388f95ff12
-      internalID: -929817797
+      spriteID: 91f3a2925131344439a5675458f99c69
+      internalID: 1639830818
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ChefGrades_16
+      name: Numbers2_16
       rect:
         serializedVersion: 2
         x: 512
@@ -486,14 +486,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d79c6a2c8b2daec4b92275b7c7ff4947
-      internalID: -2139858430
+      spriteID: bcf1e95357b2da745a07865bc64dffce
+      internalID: -1864784121
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ChefGrades_17
+      name: Numbers2_17
       rect:
         serializedVersion: 2
         x: 1024
@@ -507,14 +507,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b38b655f88298c745a0fac2986cc1465
-      internalID: -77761090
+      spriteID: 50425caadcae0414c822ee4767c65b71
+      internalID: 41061798
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ChefGrades_18
+      name: Numbers2_18
       rect:
         serializedVersion: 2
         x: 1536
@@ -528,14 +528,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c001ac6eaedb70c41bf9b22da6204ca2
-      internalID: 1146297065
+      spriteID: 734e9fe6d0715524ea209294d5a4ef44
+      internalID: -88470531
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ChefGrades_19
+      name: Numbers2_19
       rect:
         serializedVersion: 2
         x: 2048
@@ -549,8 +549,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eb3daf6f13da308488e1c696cb46b35e
-      internalID: 1555977339
+      spriteID: c2d9689a7f45ffe4f808acbd59f8e81f
+      internalID: 723986901
       vertices: []
       indices: 
       edges: []
@@ -558,7 +558,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: ed76ea7b94a18944daf6cf81b6561e7e
+    spriteID: d347ab982c6c1e643a757234e0682176
     internalID: 0
     vertices: []
     indices: 
@@ -566,26 +566,26 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      ChefGrades_0: -182369993
-      ChefGrades_1: 997666561
-      ChefGrades_10: -2029479838
-      ChefGrades_11: 872167046
-      ChefGrades_12: -1457713311
-      ChefGrades_13: -1674197438
-      ChefGrades_14: -986852801
-      ChefGrades_15: -929817797
-      ChefGrades_16: -2139858430
-      ChefGrades_17: -77761090
-      ChefGrades_18: 1146297065
-      ChefGrades_19: 1555977339
-      ChefGrades_2: -1691957333
-      ChefGrades_3: -33955550
-      ChefGrades_4: 1865326185
-      ChefGrades_5: -302209910
-      ChefGrades_6: -1639331230
-      ChefGrades_7: 336553815
-      ChefGrades_8: 617906255
-      ChefGrades_9: 1591248362
+      Numbers2_0: 196399913
+      Numbers2_1: 1173496058
+      Numbers2_10: -519858187
+      Numbers2_11: 1709770032
+      Numbers2_12: -1094969708
+      Numbers2_13: -299499959
+      Numbers2_14: -928230137
+      Numbers2_15: 1639830818
+      Numbers2_16: -1864784121
+      Numbers2_17: 41061798
+      Numbers2_18: -88470531
+      Numbers2_19: 723986901
+      Numbers2_2: 272872532
+      Numbers2_3: 1907051661
+      Numbers2_4: 178372081
+      Numbers2_5: 401647149
+      Numbers2_6: 1788928184
+      Numbers2_7: 913660121
+      Numbers2_8: 2055142841
+      Numbers2_9: -1694167772
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
