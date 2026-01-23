@@ -332,15 +332,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 93ce5791be047624487f8b9342d5e96e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.6666667, y: 0.6666667}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &479987237
@@ -448,15 +448,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 93ce5791be047624487f8b9342d5e96e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.6666667, y: 0.6666667}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &569712814
@@ -582,7 +582,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: d91466f51ea84e64780aa32447143fdf, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.94493365, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -607,7 +607,7 @@ MonoBehaviour:
   finishedRolling:
     m_PersistentCalls:
       m_Calls: []
-  scriptableChefDie: {fileID: 11400000, guid: a32a63157621e7741a913430cf58b0a7, type: 2}
+  scriptableChefDie: {fileID: 11400000, guid: 2b4d4e259909b6749b3e5a8754220bdb, type: 2}
 --- !u!1001 &629956852
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -844,7 +844,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: d91466f51ea84e64780aa32447143fdf, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.94493365, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -869,7 +869,7 @@ MonoBehaviour:
   finishedRolling:
     m_PersistentCalls:
       m_Calls: []
-  scriptableChefDie: {fileID: 11400000, guid: a32a63157621e7741a913430cf58b0a7, type: 2}
+  scriptableChefDie: {fileID: 11400000, guid: 2b4d4e259909b6749b3e5a8754220bdb, type: 2}
 --- !u!1 &683796698
 GameObject:
   m_ObjectHideFlags: 0
@@ -943,7 +943,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: -677416511, guid: 632dcf7a166dd214ab91da0797b2d8f5, type: 3}
+  m_Sprite: {fileID: 196399913, guid: f62195a99e7f2864daabc1b6372552de, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1121,7 +1121,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: -677416511, guid: 632dcf7a166dd214ab91da0797b2d8f5, type: 3}
+  m_Sprite: {fileID: 196399913, guid: f62195a99e7f2864daabc1b6372552de, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1358,7 +1358,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: d91466f51ea84e64780aa32447143fdf, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.94493365, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1383,7 +1383,7 @@ MonoBehaviour:
   finishedRolling:
     m_PersistentCalls:
       m_Calls: []
-  scriptableChefDie: {fileID: 11400000, guid: ee7924dbca33baf4f8880f6140d38658, type: 2}
+  scriptableChefDie: {fileID: 11400000, guid: 2b4d4e259909b6749b3e5a8754220bdb, type: 2}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1758,7 +1758,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: d91466f51ea84e64780aa32447143fdf, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.94493365, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1783,7 +1783,7 @@ MonoBehaviour:
   finishedRolling:
     m_PersistentCalls:
       m_Calls: []
-  scriptableChefDie: {fileID: 11400000, guid: ee7924dbca33baf4f8880f6140d38658, type: 2}
+  scriptableChefDie: {fileID: 11400000, guid: 2b4d4e259909b6749b3e5a8754220bdb, type: 2}
 --- !u!1 &1150802733
 GameObject:
   m_ObjectHideFlags: 0
@@ -1935,15 +1935,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 93ce5791be047624487f8b9342d5e96e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.6666667, y: 0.6666667}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1264545499
@@ -2019,15 +2019,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 93ce5791be047624487f8b9342d5e96e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.6666667, y: 0.6666667}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1548205840
@@ -2153,7 +2153,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: d91466f51ea84e64780aa32447143fdf, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.94493365, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2178,7 +2178,7 @@ MonoBehaviour:
   finishedRolling:
     m_PersistentCalls:
       m_Calls: []
-  scriptableChefDie: {fileID: 11400000, guid: ee7924dbca33baf4f8880f6140d38658, type: 2}
+  scriptableChefDie: {fileID: 11400000, guid: 2b4d4e259909b6749b3e5a8754220bdb, type: 2}
 --- !u!1 &1572183359
 GameObject:
   m_ObjectHideFlags: 0
@@ -2252,7 +2252,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: -677416511, guid: 632dcf7a166dd214ab91da0797b2d8f5, type: 3}
+  m_Sprite: {fileID: 196399913, guid: f62195a99e7f2864daabc1b6372552de, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2336,7 +2336,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: -677416511, guid: 632dcf7a166dd214ab91da0797b2d8f5, type: 3}
+  m_Sprite: {fileID: 196399913, guid: f62195a99e7f2864daabc1b6372552de, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2420,15 +2420,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 93ce5791be047624487f8b9342d5e96e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.6666667, y: 0.6666667}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1823107983
@@ -2504,7 +2504,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: -677416511, guid: 632dcf7a166dd214ab91da0797b2d8f5, type: 3}
+  m_Sprite: {fileID: 196399913, guid: f62195a99e7f2864daabc1b6372552de, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2724,15 +2724,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 93ce5791be047624487f8b9342d5e96e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.6666667, y: 0.6666667}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &2054030800
@@ -2808,7 +2808,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: -677416511, guid: 632dcf7a166dd214ab91da0797b2d8f5, type: 3}
+  m_Sprite: {fileID: 196399913, guid: f62195a99e7f2864daabc1b6372552de, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2870,7 +2870,7 @@ MonoBehaviour:
   finishedRolling:
     m_PersistentCalls:
       m_Calls: []
-  scriptableChefDie: {fileID: 11400000, guid: a32a63157621e7741a913430cf58b0a7, type: 2}
+  scriptableChefDie: {fileID: 11400000, guid: 2b4d4e259909b6749b3e5a8754220bdb, type: 2}
 --- !u!61 &2137236176
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2958,7 +2958,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: d91466f51ea84e64780aa32447143fdf, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.94493365, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

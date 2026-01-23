@@ -21,14 +21,27 @@ public class ChefDie : MonoBehaviour
     private bool isLocked = false;
     private GameObject highlight;
 
-    //public Face CurrentFace { get { return scriptableDie.faces[currentFaceIndex]; } }
+    //TODO: Change CurrentFace and Faces to not use the scriptable die info. Scriptable die should only be used to establish the
+    // DEFAULT faces for a die.
+    public Face CurrentFace { get { return scriptableChefDie.faces[currentFaceIndex]; } }
     public int NumFaces { get { return scriptableChefDie.faces.Length;}}
     public bool IsRolling { get { return rollingCoroutineCount > 0; } }
     public bool IsLocked { get { return isLocked; } }
-    //public Face[] Faces { get { return scriptableDie.faces;} }
+    public Face[] Faces { get { return scriptableChefDie.faces;} }
 
+    //Make the die face change in the editor so we easily know which dice we're using
+    private void OnValidate() {
+        if (spriteRenderers == null || spriteRenderers.Length == 0) {
+            spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+        }
+        spriteRenderers[0].sprite = scriptableChefDie.background;
+        spriteRenderers[0].color = scriptableChefDie.backgroundColor;
+        UpdateFaceSprites(0);
+    }
     void Start() {
-        spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+        if (spriteRenderers == null || spriteRenderers.Length == 0) {
+            spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+        }
         spriteRenderers[0].sprite = scriptableChefDie.background;
         spriteRenderers[0].color = scriptableChefDie.backgroundColor;
         UpdateFaceSprites(currentFaceIndex);
@@ -39,7 +52,6 @@ public class ChefDie : MonoBehaviour
     }
 
     private void UpdateFaceSprites(int currentFaceIndex) {
-        spriteRenderers[0].sprite = scriptableChefDie.background; //this doesnt have to happen each time
         spriteRenderers[1].sprite = scriptableChefDie.faces[currentFaceIndex].ingredient.IngredientSprite;
         spriteRenderers[2].sprite = scriptableChefDie.faces[currentFaceIndex].grade.gradeSprite;
     }
