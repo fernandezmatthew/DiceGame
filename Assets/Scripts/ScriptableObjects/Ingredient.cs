@@ -13,6 +13,8 @@ public class Ingredient : ScriptableObject {
         Potato,
         Beef,
         Chicken,
-        Cheese
+        Cheese,
+        Chili,
+        Aromatics
     }
 }
