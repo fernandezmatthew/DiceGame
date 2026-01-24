@@ -15,7 +15,7 @@ MonoBehaviour:
   faces:
   - ingredient: {fileID: 11400000, guid: 295a7c3779f4d5f4685e8b24817bd89c, type: 2}
     grade: {fileID: 11400000, guid: 41bcb05e730744d488d038b60a31be6f, type: 2}
-  - ingredient: {fileID: 11400000, guid: eb6c70ae4bad55c488954b3d1f0c32d1, type: 2}
+  - ingredient: {fileID: 11400000, guid: ec9d33d92f0415942b6222dcb24bcf46, type: 2}
     grade: {fileID: 11400000, guid: e1fdd66debabcd8438424e43a5d7ea6b, type: 2}
   - ingredient: {fileID: 11400000, guid: 7fa223988ad9afa45a1f5bca40aab2fa, type: 2}
     grade: {fileID: 11400000, guid: ed44e97da6d69d14a89e5d98d9f2d214, type: 2}

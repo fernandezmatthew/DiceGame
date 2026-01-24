@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b04c4aed7ae761478b89dcc4b7fba3a, type: 3}
   m_Name: ChefRank6
   m_EditorClassIdentifier: 
-  grade: 6
+  value: 6
   gradeSprite: {fileID: 401647149, guid: f62195a99e7f2864daabc1b6372552de, type: 3}

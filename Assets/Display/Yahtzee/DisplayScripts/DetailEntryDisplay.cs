@@ -12,8 +12,7 @@ public class DetailEntryDisplay : MonoBehaviour
     private Scoresheet.DetailEntry detailEntry;
     public void SetEntry(Scoresheet.DetailEntry detailEntry) {
         this.detailEntry = detailEntry;
-        entryNameText.text = detailEntry.displayName;
-        scoreText.text = detailEntry.score.ToString();
+        UpdateDisplay();
     }
 
     public void UpdateDisplay() {

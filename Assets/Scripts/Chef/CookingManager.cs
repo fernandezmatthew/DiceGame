@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static Scoresheet;
 
 public class CookingManager : MonoBehaviour {
     [HideInInspector] public UnityEvent diceRollFinished;
@@ -17,6 +18,8 @@ public class CookingManager : MonoBehaviour {
     private int diceRolling = 0;
     private int rollsRemaining;
 
+    private DishDisplay[] dishDisplays;
+
     //UI STUFF
     public Canvas canvas;
     public GameInfoDisplay rollsLeftDisplay;
@@ -26,6 +29,10 @@ public class CookingManager : MonoBehaviour {
         dice = FindObjectsOfType<ChefDie>();
         cam = FindObjectOfType<Camera>();
         rollButton = FindObjectOfType<Button>();
+        dishDisplays = FindObjectsOfType<DishDisplay>();
+        foreach (var dish in dishDisplays) {
+            dish.dishClicked.AddListener(AttemptScoreDish);
+        }
 
         playerActions = new PlayerInputActions();
 
@@ -108,6 +115,47 @@ public class CookingManager : MonoBehaviour {
         foreach (var die in dice) {
             die.Reset();
         }
+    }
+
+    //called from dishDisplay.dishClicked
+    private void AttemptScoreDish(Dish dish) {
+        //Make sure dice not rolling
+        if (diceRolling == 0) {
+            //Make sure player has made at least one roll
+            if (rollsRemaining < 3) {
+                // check to see if proper ingredients are satisfied
+                // start by making a dictionary using the given recipe list
+                Dictionary<Ingredient, int> recipeDict = new Dictionary<Ingredient, int>();
+                foreach (var ingredient in dish.recipe) {
+                    if (!recipeDict.ContainsKey(ingredient)) {
+                        recipeDict.Add(ingredient, 1);
+                    }
+                    else {
+                        recipeDict[ingredient]++;
+                    }
+                }
+
+                foreach (var die in dice) {
+                    if (recipeDict.ContainsKey(die.CurrentFace.ingredient)) {
+                        if (recipeDict[die.CurrentFace.ingredient] > 1) {
+                            recipeDict[die.CurrentFace.ingredient]--;
+                        }
+                        else {
+                            recipeDict.Remove(die.CurrentFace.ingredient);
+                        }
+                    }
+                }
+
+                //if dictionary is empty, then the condition was satisfied
+                if (recipeDict.Count == 0) {
+                    //Condition satisfied, find the score
+                    int dishScore = dish.Score(dice);
+                    Debug.Log("You scored " + dishScore + " points by cooking a " + dish.DishName + "!");
+                    UpdateRound();
+                }
+            }
+        }
+        //otherwise, we do nothing.
     }
 
     //Triggers when left mouse button clicked at all

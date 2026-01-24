@@ -17,4 +17,12 @@ public class Ingredient : ScriptableObject {
         Chili,
         Aromatics
     }
+
+    public static bool operator ==(Ingredient ingredient,EIngredientType type) {
+        return ingredient.IngredientType == type;
+    }
+
+    public static bool operator !=(Ingredient ingredient, EIngredientType type) {
+        return ingredient.IngredientType != type;
+    }
 }
