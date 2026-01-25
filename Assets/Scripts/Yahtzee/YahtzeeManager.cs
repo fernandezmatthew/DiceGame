@@ -219,11 +219,11 @@ public class YahtzeeManager : MonoBehaviour {
     }
 
     public void Quit(InputAction.CallbackContext ctx) {
-#if UNITY_STANDALONE
+    #if UNITY_STANDALONE
         Application.Quit();
-#endif
-#if UNITY_EDITOR
+    #endif
+    #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
-#endif
+    #endif
     }
 }

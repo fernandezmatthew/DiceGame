@@ -5,7 +5,6 @@ using UnityEngine.InputSystem;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using static Scoresheet;
 
 public class CookingManager : MonoBehaviour {
     [HideInInspector] public UnityEvent diceRollFinished;

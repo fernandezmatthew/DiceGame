@@ -7,6 +7,7 @@ public class YahtzeeMainMenuOption : MonoBehaviour
     public enum EYahtzeeMainMenuOption { 
         Start,
         PastScores,
+        DiceSelection,
         Quit
     }
     public EYahtzeeMainMenuOption optionID;
