@@ -13,6 +13,7 @@ public class YahtzeeMainMenuManager : MonoBehaviour
     void Start()
     {
         crossFadeAnimator = FindFirstObjectByType<Animator>();
+        crossFadeAnimator.SetTrigger("Open");
         menuOptions = FindObjectsByType<YahtzeeMainMenuOption>(FindObjectsSortMode.None).ToList();
         foreach (var option in menuOptions) {
             switch (option.optionID) {
@@ -36,11 +37,11 @@ public class YahtzeeMainMenuManager : MonoBehaviour
 
     private void StartButtonClicked() {
         //Debug.Log("Start");
-        StartCoroutine(LoadSceneAfterAnimation("Scenes/YahtzeeClone"));
+        StartCoroutine(LoadSceneAfterAnimation("Close", "Scenes/YahtzeeClone"));
     }
 
-    IEnumerator LoadSceneAfterAnimation(string scene) {
-        crossFadeAnimator.SetTrigger("Start");
+    IEnumerator LoadSceneAfterAnimation(string animation, string scene) {
+        crossFadeAnimator.SetTrigger(animation);
         //wait for transition
         while (!crossFadeAnimator.GetCurrentAnimatorStateInfo(0).IsName("crossfade_end")) {
             yield return null;
@@ -49,7 +50,7 @@ public class YahtzeeMainMenuManager : MonoBehaviour
         while (crossFadeAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1) {
             yield return null;
         }
-        SceneManager.LoadScene("Scenes/YahtzeeClone");
+        SceneManager.LoadScene(scene);
     }
 
     private void ScoresButtonClicked() {
@@ -60,7 +61,6 @@ public class YahtzeeMainMenuManager : MonoBehaviour
         Debug.Log("Dice Selection not implemented yet");
     }
     private void QuitButtonClicked() {
-        //Debug.Log("Quit");
     #if UNITY_STANDALONE
         Application.Quit();
     #endif
