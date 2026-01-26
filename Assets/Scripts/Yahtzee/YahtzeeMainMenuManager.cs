@@ -8,13 +8,21 @@ using UnityEngine.SceneManagement;
 public class YahtzeeMainMenuManager : MonoBehaviour
 {
     private List<YahtzeeMainMenuOption> menuOptions;
-    private Animator crossFadeAnimator;
+    private Animator transitionAnimator;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        crossFadeAnimator = FindFirstObjectByType<Animator>();
-        crossFadeAnimator.SetTrigger("Open");
+        //Open up scene with animation.
+        //first, find the animator
+        transitionAnimator = FindFirstObjectByType<Animator>();
+        //then, trigger open
+        transitionAnimator.SetTrigger("Open");
+        //disable player input while this is happening.
+        StartCoroutine(DisableInputWhileAnimating());
+
+        //get all main menu options
         menuOptions = FindObjectsByType<YahtzeeMainMenuOption>(FindObjectsSortMode.None).ToList();
+        //subscribe proper function to each option's onClick event
         foreach (var option in menuOptions) {
             switch (option.optionID) {
                 case YahtzeeMainMenuOption.EYahtzeeMainMenuOption.Start:
@@ -36,18 +44,33 @@ public class YahtzeeMainMenuManager : MonoBehaviour
     }
 
     private void StartButtonClicked() {
-        //Debug.Log("Start");
-        StartCoroutine(LoadSceneAfterAnimation("Close", "Scenes/YahtzeeClone"));
+        transitionAnimator.SetTrigger("Close");
+        StartCoroutine(LoadSceneAfterAnimation("Scenes/YahtzeeClone"));
     }
 
-    IEnumerator LoadSceneAfterAnimation(string animation, string scene) {
-        crossFadeAnimator.SetTrigger(animation);
+    private IEnumerator DisableInputWhileAnimating() {
+        InputManager.DisableInput();
+        yield return null; // wait one frame for animation info to update
         //wait for transition
-        while (!crossFadeAnimator.GetCurrentAnimatorStateInfo(0).IsName("crossfade_end")) {
+        while (transitionAnimator.IsInTransition(0)) {
             yield return null;
         }
-        //wait for 
-        while (crossFadeAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1) {
+        //wait for animation to finish
+        while (transitionAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1) {
+            yield return null;
+        }
+
+        InputManager.EnableInput();
+    }
+
+    IEnumerator LoadSceneAfterAnimation(string scene) {
+        yield return null;
+        //wait for transition
+        while (transitionAnimator.IsInTransition(0)) {
+            yield return null;
+        }
+        //wait for animation to finish
+        while (transitionAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1) {
             yield return null;
         }
         SceneManager.LoadScene(scene);

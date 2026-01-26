@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static UnityEngine.InputSystem.DefaultInputActions;
 
 public class YahtzeeManager : MonoBehaviour {
     [HideInInspector] public UnityEvent diceRollFinished;
@@ -14,7 +15,7 @@ public class YahtzeeManager : MonoBehaviour {
     private YahtzeeDie[] dice;
     private Camera cam;
     private Button rollButton;
-    private PlayerInputActions playerActions;
+    private Animator transitionAnimator;
     private int diceRolling = 0;
     private int rollsRemaining;
     private int currentRound;
@@ -31,19 +32,18 @@ public class YahtzeeManager : MonoBehaviour {
 
     private void Start() {
         //Find scene objects
-        dice = FindObjectsOfType<YahtzeeDie>();
-        cam = FindObjectOfType<Camera>();
-        rollButton = FindObjectOfType<Button>();
-
-        playerActions = new PlayerInputActions();
+        dice = FindObjectsByType<YahtzeeDie>(FindObjectsSortMode.None);
+        cam = FindFirstObjectByType<Camera>();
+        rollButton = FindFirstObjectByType<Button>();
 
 
         //subscribe to all input functions
-        playerActions.Enable();
-        playerActions.Yahtzee.Select.started += CheckIfDieClicked;
-        playerActions.Yahtzee.Restart.started += Restart;
-        playerActions.Yahtzee.Quit.started += Quit;
-        playerActions.Yahtzee.Save.started += SaveGame;
+        PlayerInputActions playerActions = InputManager.PlayerInputActions;
+        InputManager.EnableInput();
+        InputManager.PlayerInputActions.Yahtzee.Select.started += CheckIfDieClicked;
+        InputManager.PlayerInputActions.Yahtzee.Restart.started += Restart;
+        InputManager.PlayerInputActions.Yahtzee.Quit.started += Quit;
+        InputManager.PlayerInputActions.Yahtzee.Save.started += SaveGame;
         rollButton.onClick.AddListener(TryRollDice);
 
         //Subscribe to each die's "finishedRolling" event
@@ -55,19 +55,34 @@ public class YahtzeeManager : MonoBehaviour {
 
         //Make yahtzee scoresheet
         scoresheet = new Scoresheet();
+        //subscribe to relevant events
         scoresheet.entryClicked.AddListener(AttemptFillEntry);
         scoresheet.entryFilled.AddListener(UpdateRound);
 
+        //Inititate game state data
         rollsRemaining = 3;
         currentRound = 1;
 
-        //THIS IS ALL UI STUFF
+        //THIS IS ALL UI STUFF, can move
         scoresheetDisplay = Instantiate(scoresheetDisplayPrefab, canvas.transform);
         scoresheetDisplay.Init(scoresheet);
         UpdateGameInfoDisplays();
 
-        //This is all save stuff
+        //This is all save stuff, can move
         saveHandler = new YahtzeeSaveHandler();
+
+        //Handle animations, such as initial scene transition, can probably move
+        transitionAnimator = FindFirstObjectByType<Animator>();
+        transitionAnimator.SetTrigger("Open");
+        StartCoroutine(DisableInputWhileAnimating());
+    }
+
+    private void OnDestroy() {
+        InputManager.PlayerInputActions.Yahtzee.Select.started -= CheckIfDieClicked;
+        InputManager.PlayerInputActions.Yahtzee.Restart.started -= Restart;
+        InputManager.PlayerInputActions.Yahtzee.Quit.started -= Quit;
+        InputManager.PlayerInputActions.Yahtzee.Save.started -= SaveGame;
+        InputManager.PlayerInputActions.Yahtzee.Disable();
     }
 
     //On Event Trigger Functions
@@ -156,10 +171,7 @@ public class YahtzeeManager : MonoBehaviour {
     }
 
     private void SaveGame(InputAction.CallbackContext ctx) {
-        int[] scoreEntryValues = scoresheet.GetScoreEntryValues();
-        int[] detailEntryVaues = scoresheet.GetDetailEntryValues();
-
-        saveHandler.Save(scoreEntryValues, detailEntryVaues);
+        SaveGame();
     }
 
     private void UnlockAllDice() {
@@ -175,6 +187,22 @@ public class YahtzeeManager : MonoBehaviour {
         foreach (var die in dice) {
             die.Reset();
         }
+    }
+
+    private IEnumerator DisableInputWhileAnimating() {
+        InputManager.DisableInput();
+        yield return null; // wait for animator to update
+
+        //wait for transition
+        while (transitionAnimator.IsInTransition(0)) {
+            yield return null;
+        }
+        //wait for animation to finish
+        while (transitionAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1) {
+            yield return null;
+        }
+
+        InputManager.EnableInput();
     }
 
     //Triggers when left mouse button clicked at all
