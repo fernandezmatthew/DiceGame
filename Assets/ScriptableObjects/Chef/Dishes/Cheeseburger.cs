@@ -6,7 +6,7 @@ using UnityEngine;
 public class CheeseburgerDish : Dish {
     public CheeseburgerDish() {
         dishType = EDishType.Cheeseburger;
-        name = "Cheeseburger";
+        dishName = "Cheeseburger";
     }
     public override int Score(in ChefDie[] dice) {
         //Scores base amount + grade of highest beef, +4 if extra cheese

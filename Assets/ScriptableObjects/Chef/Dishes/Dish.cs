@@ -7,7 +7,7 @@ public abstract class Dish : ScriptableObject {
     public List<Ingredient> recipe;
     public int baseValue;
 
-    protected string name;
+    protected string dishName;
     public enum EDishType {
         Default,
         Cheeseburger,
@@ -16,7 +16,7 @@ public abstract class Dish : ScriptableObject {
     }
     protected EDishType dishType;
 
-    public string DishName { get { return name; } }
+    public string DishName { get { return dishName; } }
     public EDishType DishType { get { return dishType; } }
 
     public abstract int Score(in ChefDie[] dice);

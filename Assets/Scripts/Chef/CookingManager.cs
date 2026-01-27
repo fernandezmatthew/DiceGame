@@ -25,10 +25,10 @@ public class CookingManager : MonoBehaviour {
 
     private void Start() {
         //Find scene objects
-        dice = FindObjectsOfType<ChefDie>();
-        cam = FindObjectOfType<Camera>();
-        rollButton = FindObjectOfType<Button>();
-        dishDisplays = FindObjectsOfType<DishDisplay>();
+        dice = FindObjectsByType<ChefDie>(FindObjectsSortMode.None);
+        cam = FindFirstObjectByType<Camera>();
+        rollButton = FindFirstObjectByType<Button>();
+        dishDisplays = FindObjectsByType<DishDisplay>(FindObjectsSortMode.None);
         foreach (var dish in dishDisplays) {
             dish.dishClicked.AddListener(AttemptScoreDish);
         }

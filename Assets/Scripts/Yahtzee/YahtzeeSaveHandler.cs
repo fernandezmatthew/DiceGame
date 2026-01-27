@@ -44,7 +44,7 @@ public class YahtzeeSaveHandler {
                 }
             }
         }
-        catch (Exception e) {
+        catch (Exception) {
             Debug.Log("Error when trying to save file " + fullPath);
         }
     }
