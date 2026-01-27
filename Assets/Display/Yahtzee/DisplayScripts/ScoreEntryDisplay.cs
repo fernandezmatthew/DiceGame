@@ -8,7 +8,7 @@ using UnityEngine.Events;
 
 public class ScoreEntryDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
-    public UnityEvent<Scoresheet.ScoreEntry> entryClicked;
+    public UnityEvent<Scoresheet.ScoreEntry> onClick;
 
     public TMP_Text entryNameText;
     public TMP_Text scoreText;
@@ -55,6 +55,6 @@ public class ScoreEntryDisplay : MonoBehaviour, IPointerEnterHandler, IPointerEx
     }
 
     public void OnPointerClick(PointerEventData eventData) {
-        entryClicked.Invoke(scoreEntry);
+        onClick.Invoke(scoreEntry);
     }
 }

@@ -15,7 +15,7 @@ public class CheeseburgerDish : Dish {
         //Check dice for conditional values
         int totalBeefGrade = 0;
         foreach (var die in dice) {
-            if (die.CurrentFace.ingredient == Ingredient.EIngredientType.Beef) {
+            if (die.CurrentFace.ingredient.IsType(Ingredient.EIngredientType.Beef)) {
                 totalBeefGrade += die.CurrentFace.grade.value;
             }
         }

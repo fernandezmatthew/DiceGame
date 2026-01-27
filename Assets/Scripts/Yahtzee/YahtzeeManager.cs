@@ -1,11 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Events;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using static UnityEngine.InputSystem.DefaultInputActions;
 
 public class YahtzeeManager : MonoBehaviour {
     [HideInInspector] public UnityEvent diceRollFinished;
@@ -14,18 +10,20 @@ public class YahtzeeManager : MonoBehaviour {
     private Scoresheet scoresheet;
     private YahtzeeDie[] dice;
     private Camera cam;
-    private Button rollButton;
     private Animator transitionAnimator;
     private int diceRolling = 0;
-    private int rollsRemaining;
-    private int currentRound;
+    private int rollsRemaining = 3;
+    private int currentRound = 1;
+    private bool isPaused = false;
 
     //UI STUFF
-    public Canvas canvas;
+    public RectTransform canvas;
+    public MattUiButton rollButton;
     public ScoresheetDisplay scoresheetDisplayPrefab;
     public GameInfoDisplay rollsLeftDisplay;
     public GameInfoDisplay currentRoundDisplay;
     private ScoresheetDisplay scoresheetDisplay;
+    public GameObject pauseMenu;
 
     //Save stuff
     private YahtzeeSaveHandler saveHandler;
@@ -34,7 +32,8 @@ public class YahtzeeManager : MonoBehaviour {
         //Find scene objects
         dice = FindObjectsByType<YahtzeeDie>(FindObjectsSortMode.None);
         cam = FindFirstObjectByType<Camera>();
-        rollButton = FindFirstObjectByType<Button>();
+
+        pauseMenu.SetActive(false);
 
 
         //subscribe to all input functions
@@ -44,7 +43,8 @@ public class YahtzeeManager : MonoBehaviour {
         InputManager.PlayerInputActions.Yahtzee.Restart.started += Restart;
         InputManager.PlayerInputActions.Yahtzee.Quit.started += Quit;
         InputManager.PlayerInputActions.Yahtzee.Save.started += SaveGame;
-        rollButton.onClick.AddListener(TryRollDice);
+        InputManager.PlayerInputActions.Yahtzee.Pause.started += Pause;
+        rollButton.onClick.AddListener(AttemptRollDice);
 
         //Subscribe to each die's "finishedRolling" event
         if (dice != null) {
@@ -58,10 +58,6 @@ public class YahtzeeManager : MonoBehaviour {
         //subscribe to relevant events
         scoresheet.entryClicked.AddListener(AttemptFillEntry);
         scoresheet.entryFilled.AddListener(UpdateRound);
-
-        //Inititate game state data
-        rollsRemaining = 3;
-        currentRound = 1;
 
         //THIS IS ALL UI STUFF, can move
         scoresheetDisplay = Instantiate(scoresheetDisplayPrefab, canvas.transform);
@@ -82,30 +78,12 @@ public class YahtzeeManager : MonoBehaviour {
         InputManager.PlayerInputActions.Yahtzee.Restart.started -= Restart;
         InputManager.PlayerInputActions.Yahtzee.Quit.started -= Quit;
         InputManager.PlayerInputActions.Yahtzee.Save.started -= SaveGame;
+        InputManager.PlayerInputActions.Yahtzee.Pause.started -= Pause;
         InputManager.PlayerInputActions.Yahtzee.Disable();
     }
 
     //On Event Trigger Functions
     //*************************************
-
-    //Triggers when button is pressed
-    public void TryRollDice() {
-        if (dice != null) {
-            if (diceRolling == 0 && rollsRemaining > 0 && currentRound <= 13) {
-                foreach (YahtzeeDie die in dice) {
-                    if (!die.IsLocked) {
-                        diceRolling++;
-                        float rollLength = UnityEngine.Random.Range(.8f, 1.2f);
-                        die.Roll(rollLength);
-                    }
-                }
-                if (diceRolling > 0) {
-                    rollsRemaining--;
-                    UpdateGameInfoDisplays();
-                }
-            }
-        }
-    }
 
     //Triggers when a die finishes rolling
     public void DecrementDiceRolling() {
@@ -205,6 +183,26 @@ public class YahtzeeManager : MonoBehaviour {
         InputManager.EnableInput();
     }
 
+    //Triggers when roll button is pressed
+    public void AttemptRollDice() {
+        Debug.Log("ButtonTriggered");
+        if (dice != null) {
+            if (diceRolling == 0 && rollsRemaining > 0 && currentRound <= 13) {
+                foreach (YahtzeeDie die in dice) {
+                    if (!die.IsLocked) {
+                        diceRolling++;
+                        float rollLength = UnityEngine.Random.Range(.8f, 1.2f);
+                        die.Roll(rollLength);
+                    }
+                }
+                if (diceRolling > 0) {
+                    rollsRemaining--;
+                    UpdateGameInfoDisplays();
+                }
+            }
+        }
+    }
+
     //Triggers when left mouse button clicked at all
     public void CheckIfDieClicked(InputAction.CallbackContext ctx) {
         if (ctx.phase == InputActionPhase.Started) {
@@ -245,6 +243,23 @@ public class YahtzeeManager : MonoBehaviour {
         scoresheetDisplay.UpdateScoresheetDisplay();
         UpdateGameInfoDisplays();
     }
+
+    //called from 'pause' inputaction
+    public void Pause(InputAction.CallbackContext ctx) {
+        Debug.Log("Pause not implemented yet");
+        TogglePauseUI();
+    }
+
+    private void TogglePauseUI() {
+        isPaused = !isPaused;
+        if (isPaused) {
+            pauseMenu.SetActive(true);
+        }
+        else { 
+            pauseMenu.SetActive(false);
+        }
+    }
+
 
     public void Quit(InputAction.CallbackContext ctx) {
     #if UNITY_STANDALONE

@@ -30,7 +30,7 @@ public class ScoresheetDisplay : MonoBehaviour
         if (scoreEntryDisplays != null) {
             foreach (ScoreEntryDisplay scoreEntryDisplay in scoreEntryDisplays) {
                 if (scoreEntryDisplay != null) {
-                    scoreEntryDisplay.entryClicked.AddListener(EntryClicked);
+                    scoreEntryDisplay.onClick.AddListener(EntryClicked);
                 }
             }
         }
@@ -40,7 +40,7 @@ public class ScoresheetDisplay : MonoBehaviour
         if (scoreEntryDisplays != null) {
             foreach (ScoreEntryDisplay scoreEntryDisplay in scoreEntryDisplays) {
                 if (scoreEntryDisplay != null) {
-                    scoreEntryDisplay.entryClicked.RemoveListener(EntryClicked);
+                    scoreEntryDisplay.onClick.RemoveListener(EntryClicked);
                 }
             }
         }
@@ -75,7 +75,7 @@ public class ScoresheetDisplay : MonoBehaviour
 
             //Add Scoresheet.FillEntry as listener to each entrydisplay.
             foreach (ScoreEntryDisplay scoreEntryDisplay in scoreEntryDisplays) {
-                scoreEntryDisplay.entryClicked.AddListener(EntryClicked);
+                scoreEntryDisplay.onClick.AddListener(EntryClicked);
             }
 
             //Instantiate the 5 detail displays

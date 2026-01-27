@@ -18,11 +18,7 @@ public class Ingredient : ScriptableObject {
         Aromatics
     }
 
-    public static bool operator ==(Ingredient ingredient,EIngredientType type) {
-        return ingredient.IngredientType == type;
-    }
-
-    public static bool operator !=(Ingredient ingredient, EIngredientType type) {
-        return ingredient.IngredientType != type;
+    public bool IsType(EIngredientType type) {
+        return IngredientType == type;
     }
 }
