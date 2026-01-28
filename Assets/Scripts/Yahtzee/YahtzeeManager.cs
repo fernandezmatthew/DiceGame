@@ -33,7 +33,6 @@ public class YahtzeeManager : MonoBehaviour {
     private void OnEnable() {
         if (hasStarted) {
             //subscribe to all input functions
-            InputManager.EnableInput();
             InputManager.PlayerInputActions.Yahtzee.Select.started += CheckIfDieClicked;
             InputManager.PlayerInputActions.Yahtzee.Restart.started += RestartClicked;
             InputManager.PlayerInputActions.Yahtzee.Quit.started += Quit;
@@ -56,15 +55,23 @@ public class YahtzeeManager : MonoBehaviour {
     private void Start() {
         hasStarted = true;
 
+        //Handle animations, such as initial scene transition, can probably move
+        transitionAnimator = FindFirstObjectByType<Animator>();
+        transitionAnimator.SetTrigger("Open");
+        if (InputManager.IsInitiated()) {
+            InputManager.DisableInput();
+            InputManager.DisableGlobalInput();
+        }
+        StartCoroutine(DisableInputWhileAnimating());
+
         //Find scene objects
         dice = FindObjectsByType<YahtzeeDie>(FindObjectsSortMode.None);
         cam = FindFirstObjectByType<Camera>();
 
-        pauseMenu.SetActive(false);
+        //pauseMenu.SetActive(false);
 
         //subscribe to all input events
         if (InputManager.IsInitiated()) {
-            InputManager.EnableInput();
             InputManager.PlayerInputActions.Yahtzee.Select.started += CheckIfDieClicked;
             InputManager.PlayerInputActions.Yahtzee.Restart.started += RestartClicked;
             InputManager.PlayerInputActions.Yahtzee.Quit.started += Quit;
@@ -97,11 +104,6 @@ public class YahtzeeManager : MonoBehaviour {
 
         //This is all save stuff, can move
         saveHandler = new YahtzeeSaveHandler();
-
-        //Handle animations, such as initial scene transition, can probably move
-        transitionAnimator = FindFirstObjectByType<Animator>();
-        transitionAnimator.SetTrigger("Open");
-        StartCoroutine(DisableInputWhileAnimating());
     }
     private void OnDisable() {
         InputManager.PlayerInputActions.Yahtzee.Select.started -= CheckIfDieClicked;
@@ -117,8 +119,10 @@ public class YahtzeeManager : MonoBehaviour {
             }
         }
 
-        scoresheet.entryClicked.RemoveListener(AttemptFillEntry);
-        scoresheet.entryFilled.RemoveListener(UpdateRound);
+        if (scoresheet != null) {
+            scoresheet.entryClicked.RemoveListener(AttemptFillEntry);
+            scoresheet.entryFilled.RemoveListener(UpdateRound);
+        }
     }
     private void OnDestroy() {
      
@@ -211,7 +215,42 @@ public class YahtzeeManager : MonoBehaviour {
 
     private IEnumerator DisableInputWhileAnimating() {
         InputManager.DisableInput();
+        InputManager.DisableGlobalInput();
+        Debug.Log("Disabling input");
         yield return null; // wait for animator to update
+
+        //wait for transition
+        while (transitionAnimator.IsInTransition(0)) {
+            yield return null;
+        }
+        //wait for animation to finish
+        while (transitionAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1) {
+            yield return null;
+        }
+        Debug.Log("Animation finished");
+        InputManager.EnableInput();
+        InputManager.EnableGlobalInput();
+    }
+
+    private IEnumerator RestartAnimation() {
+        transitionAnimator.SetTrigger("Close");
+        InputManager.DisableInput();
+        InputManager.DisableGlobalInput();
+        yield return null;
+
+        //wait for transition
+        while (transitionAnimator.IsInTransition(0)) {
+            yield return null;
+        }
+        //wait for animation to finish
+        while (transitionAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1) {
+            yield return null;
+        }
+
+        RestartData();
+        transitionAnimator.SetTrigger("Open");
+        yield return null;
+        
 
         //wait for transition
         while (transitionAnimator.IsInTransition(0)) {
@@ -223,6 +262,7 @@ public class YahtzeeManager : MonoBehaviour {
         }
 
         InputManager.EnableInput();
+        InputManager.EnableGlobalInput();
     }
 
     //Triggers when roll button is pressed
@@ -273,11 +313,11 @@ public class YahtzeeManager : MonoBehaviour {
     }
 
     public void RestartClicked(InputAction.CallbackContext ctx) {
-        Restart();
+        StartCoroutine(RestartAnimation());
     }
 
     //called from 'reset' inputaction
-    public void Restart() {
+    public void RestartData() {
         //instead of reloading the current scene, lets reset the game in-place
         UnlockAllDice();
         ResetAllDice();
@@ -291,7 +331,7 @@ public class YahtzeeManager : MonoBehaviour {
 
     public void RestartFromPause() {
         Pause();
-        Restart();
+        StartCoroutine(RestartAnimation());
     }
 
     //called from 'pause' inputaction
@@ -326,7 +366,7 @@ public class YahtzeeManager : MonoBehaviour {
         Pause();
         transitionAnimator.SetTrigger("Close");
         StartCoroutine(LoadSceneAfterAnimation("Scenes/YahtzeeMainMenu"));
-        DisableInputWhileAnimating();
+        StartCoroutine(DisableInputWhileAnimating());
     }
 
     IEnumerator LoadSceneAfterAnimation(string scene) {
