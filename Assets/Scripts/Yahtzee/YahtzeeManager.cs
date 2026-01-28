@@ -216,7 +216,6 @@ public class YahtzeeManager : MonoBehaviour {
     private IEnumerator DisableInputWhileAnimating() {
         InputManager.DisableInput();
         InputManager.DisableGlobalInput();
-        Debug.Log("Disabling input");
         yield return null; // wait for animator to update
 
         //wait for transition
@@ -227,7 +226,6 @@ public class YahtzeeManager : MonoBehaviour {
         while (transitionAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1) {
             yield return null;
         }
-        Debug.Log("Animation finished");
         InputManager.EnableInput();
         InputManager.EnableGlobalInput();
     }

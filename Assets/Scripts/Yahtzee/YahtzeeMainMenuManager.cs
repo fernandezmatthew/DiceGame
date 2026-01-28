@@ -100,9 +100,9 @@ public class YahtzeeMainMenuManager : MonoBehaviour
     }
 
     private IEnumerator DisableInputWhileAnimating() {
+        //has end time sometimes messes this up for some reason
         InputManager.DisableInput();
         InputManager.DisableGlobalInput();
-        Debug.Log("Disabling ui input");
         yield return null; // wait one frame for animation info to update
         //wait for transition
         while (transitionAnimator.IsInTransition(0)) {
@@ -113,7 +113,6 @@ public class YahtzeeMainMenuManager : MonoBehaviour
             yield return null;
         }
 
-        Debug.Log("Animation finished!");
         InputManager.EnableInput();
         InputManager.EnableGlobalInput();
     }
