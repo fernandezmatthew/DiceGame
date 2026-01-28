@@ -9,9 +9,34 @@ public class YahtzeeMainMenuManager : MonoBehaviour
 {
     private List<YahtzeeMainMenuOption> menuOptions;
     private Animator transitionAnimator;
+
+    private void OnEnable() {
+        if (menuOptions != null) {
+            //subscribe proper function to each option's onClick event
+            foreach (var option in menuOptions) {
+                if (option != null) {
+                    switch (option.optionID) {
+                        case YahtzeeMainMenuOption.EYahtzeeMainMenuOption.Start:
+                            option.GetComponent<MattUiButton>().onClick.AddListener(StartButtonClicked);
+                            break;
+                        case YahtzeeMainMenuOption.EYahtzeeMainMenuOption.PastScores:
+                            option.GetComponent<MattUiButton>().onClick.AddListener(ScoresButtonClicked);
+                            break;
+                        case YahtzeeMainMenuOption.EYahtzeeMainMenuOption.DiceSelection:
+                            option.GetComponent<MattUiButton>().onClick.AddListener(DiceButtonClicked);
+                            break;
+                        case YahtzeeMainMenuOption.EYahtzeeMainMenuOption.Quit:
+                            option.GetComponent<MattUiButton>().onClick.AddListener(QuitButtonClicked);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+        }
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
+    void Start() {
         //Open up scene with animation.
         //first, find the animator
         transitionAnimator = FindFirstObjectByType<Animator>();
@@ -26,19 +51,45 @@ public class YahtzeeMainMenuManager : MonoBehaviour
         foreach (var option in menuOptions) {
             switch (option.optionID) {
                 case YahtzeeMainMenuOption.EYahtzeeMainMenuOption.Start:
-                    option.GetComponent<Button>().onClick.AddListener(StartButtonClicked);
+                    option.GetComponent<MattUiButton>().onClick.AddListener(StartButtonClicked);
                     break;
                 case YahtzeeMainMenuOption.EYahtzeeMainMenuOption.PastScores:
-                    option.GetComponent<Button>().onClick.AddListener(ScoresButtonClicked);
+                    option.GetComponent<MattUiButton>().onClick.AddListener(ScoresButtonClicked);
                     break;
                 case YahtzeeMainMenuOption.EYahtzeeMainMenuOption.DiceSelection:
-                    option.GetComponent<Button>().onClick.AddListener(DiceButtonClicked);
+                    option.GetComponent<MattUiButton>().onClick.AddListener(DiceButtonClicked);
                     break;
                 case YahtzeeMainMenuOption.EYahtzeeMainMenuOption.Quit:
-                    option.GetComponent<Button>().onClick.AddListener(QuitButtonClicked);
+                    option.GetComponent<MattUiButton>().onClick.AddListener(QuitButtonClicked);
                     break;
                 default:
                     break;
+            }
+        }
+    }
+
+    private void OnDisable() {
+        if (menuOptions != null) {
+            //subscribe proper function to each option's onClick event
+            foreach (var option in menuOptions) {
+                if (option != null) {
+                    switch (option.optionID) {
+                        case YahtzeeMainMenuOption.EYahtzeeMainMenuOption.Start:
+                            option.GetComponent<MattUiButton>().onClick.RemoveListener(StartButtonClicked);
+                            break;
+                        case YahtzeeMainMenuOption.EYahtzeeMainMenuOption.PastScores:
+                            option.GetComponent<MattUiButton>().onClick.RemoveListener(ScoresButtonClicked);
+                            break;
+                        case YahtzeeMainMenuOption.EYahtzeeMainMenuOption.DiceSelection:
+                            option.GetComponent<MattUiButton>().onClick.RemoveListener(DiceButtonClicked);
+                            break;
+                        case YahtzeeMainMenuOption.EYahtzeeMainMenuOption.Quit:
+                            option.GetComponent<MattUiButton>().onClick.RemoveListener(QuitButtonClicked);
+                            break;
+                        default:
+                            break;
+                    }
+                }
             }
         }
     }

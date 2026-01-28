@@ -16,27 +16,32 @@ public class InputManager : MonoBehaviour
             instance = this;
 
             playerInputActions = new PlayerInputActions();
+            playerInputActions.Global.Enable();
             uiInputModule = GetComponent<InputSystemUIInputModule>();
             DontDestroyOnLoad(gameObject);
         }
     }
 
+    public static bool IsInitiated() { 
+        return instance != null;
+    }
+
     public static void EnableInput() {
-        instance.playerInputActions.Enable();
+        instance.playerInputActions.Yahtzee.Enable();
         UiInputModule.enabled = true;
     }
 
     public static void DisableInput() {
-        instance.playerInputActions.Disable();
+        instance.playerInputActions.Yahtzee.Disable();
         UiInputModule.enabled = false;
     }
 
     public static void EnablePlayerInput() {
-        instance.playerInputActions.Enable();
+        instance.playerInputActions.Yahtzee.Enable();
     }
 
     public static void DisablePlayerInput() {
-        instance.playerInputActions.Disable();
+        instance.playerInputActions.Yahtzee.Disable();
     }
 
     public static void EnableUiInput() {

@@ -13,6 +13,7 @@ public class MattUiButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     public Color PressedColor = Color.white;
     public float fadeDuration = .1f;
 
+    private bool isInitialized = false;
     private Image image;
     private Color originalColor;
     private Color onReleaseColor;
@@ -26,7 +27,14 @@ public class MattUiButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     private bool countingTimeSinceMouseDown = false;
     private bool triggeredClickInMouseUp = false;
 
+    void OnEnable() { 
+        if (isInitialized) {
+            image.color = originalColor;
+        }
+    }
+    
     void Start() {
+        isInitialized = true;
         image = GetComponent<Image>();
         originalColor = image.color;
         onReleaseColor = originalColor;
@@ -34,7 +42,7 @@ public class MattUiButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     void Update() {
         if (countingTimeSinceMouseDown) {
-            timeSinceMouseDown += Time.deltaTime;
+            timeSinceMouseDown += Time.unscaledDeltaTime;
             if (timeSinceMouseDown > clickOutOfBoundsForgivenessThreshold) {
                 countingTimeSinceMouseDown = false;
             }
@@ -97,7 +105,7 @@ public class MattUiButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         while (elapsedTime < fadeDuration) {
             float interpolationPercent = elapsedTime / fadeDuration;
             image.color = Color.Lerp(startColor, endColor, interpolationPercent);
-            elapsedTime += Time.deltaTime;
+            elapsedTime += Time.unscaledDeltaTime;
             yield return null;
         }
         image.color = endColor;
