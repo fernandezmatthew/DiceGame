@@ -37,9 +37,6 @@ public class YahtzeeManager : MonoBehaviour {
         if (hasStarted) {
             //subscribe to all input functions
             InputManager.PlayerInputActions.Yahtzee.Select.started += CheckIfDieClicked;
-            InputManager.PlayerInputActions.Yahtzee.Restart.started += RestartClicked;
-            InputManager.PlayerInputActions.Yahtzee.Quit.started += Quit;
-            InputManager.PlayerInputActions.Yahtzee.Save.started += SaveGame;
             InputManager.PlayerInputActions.Global.Pause.started += PauseClicked;
             rollButton.onClick.AddListener(AttemptRollDice);
 
@@ -76,9 +73,6 @@ public class YahtzeeManager : MonoBehaviour {
         //subscribe to all input events
         if (InputManager.IsInitiated()) {
             InputManager.PlayerInputActions.Yahtzee.Select.started += CheckIfDieClicked;
-            InputManager.PlayerInputActions.Yahtzee.Restart.started += RestartClicked;
-            InputManager.PlayerInputActions.Yahtzee.Quit.started += Quit;
-            InputManager.PlayerInputActions.Yahtzee.Save.started += SaveGame;
             InputManager.PlayerInputActions.Global.Pause.started += PauseClicked;
             rollButton.onClick.AddListener(AttemptRollDice);
         }
@@ -110,9 +104,6 @@ public class YahtzeeManager : MonoBehaviour {
     }
     private void OnDisable() {
         InputManager.PlayerInputActions.Yahtzee.Select.started -= CheckIfDieClicked;
-        InputManager.PlayerInputActions.Yahtzee.Restart.started -= RestartClicked;
-        InputManager.PlayerInputActions.Yahtzee.Quit.started -= Quit;
-        InputManager.PlayerInputActions.Yahtzee.Save.started -= SaveGame;
         InputManager.PlayerInputActions.Global.Pause.started -= PauseClicked;
         InputManager.PlayerInputActions.Yahtzee.Disable();
 

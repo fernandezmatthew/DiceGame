@@ -39,7 +39,6 @@ public class CookingManager : MonoBehaviour {
         //subscribe to all input functions
         playerActions.Enable();
         playerActions.Yahtzee.Select.started += CheckIfDieClicked;
-        playerActions.Yahtzee.Restart.started += Restart;
         rollButton.onClick.AddListener(TryRollDice);
 
         //Subscribe to each die's "finishedRolling" event

@@ -100,33 +100,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Restart"",
-                    ""type"": ""Button"",
-                    ""id"": ""64ca9924-4ed8-4b38-88d5-7a2cc6db05d1"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Quit"",
-                    ""type"": ""Button"",
-                    ""id"": ""3923f0cb-6712-4239-85c1-16106e35fbc1"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Save"",
-                    ""type"": ""Button"",
-                    ""id"": ""7bd529a3-3ccd-4b28-bdfa-fdd4df6ab83a"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -138,39 +111,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Select"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""64ffa0d1-70e3-4e0d-8f4a-266ea8218ea8"",
-                    ""path"": ""<Keyboard>/r"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Restart"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""1aea1e5a-3764-44c3-bf57-90d6bb560798"",
-                    ""path"": ""<Keyboard>/q"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Quit"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""7ee2f39d-9fd6-491c-aa13-743c1e9acef3"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Save"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -726,9 +666,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         // Yahtzee
         m_Yahtzee = asset.FindActionMap("Yahtzee", throwIfNotFound: true);
         m_Yahtzee_Select = m_Yahtzee.FindAction("Select", throwIfNotFound: true);
-        m_Yahtzee_Restart = m_Yahtzee.FindAction("Restart", throwIfNotFound: true);
-        m_Yahtzee_Quit = m_Yahtzee.FindAction("Quit", throwIfNotFound: true);
-        m_Yahtzee_Save = m_Yahtzee.FindAction("Save", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -827,9 +764,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Yahtzee;
     private List<IYahtzeeActions> m_YahtzeeActionsCallbackInterfaces = new List<IYahtzeeActions>();
     private readonly InputAction m_Yahtzee_Select;
-    private readonly InputAction m_Yahtzee_Restart;
-    private readonly InputAction m_Yahtzee_Quit;
-    private readonly InputAction m_Yahtzee_Save;
     /// <summary>
     /// Provides access to input actions defined in input action map "Yahtzee".
     /// </summary>
@@ -845,18 +779,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Yahtzee/Select".
         /// </summary>
         public InputAction @Select => m_Wrapper.m_Yahtzee_Select;
-        /// <summary>
-        /// Provides access to the underlying input action "Yahtzee/Restart".
-        /// </summary>
-        public InputAction @Restart => m_Wrapper.m_Yahtzee_Restart;
-        /// <summary>
-        /// Provides access to the underlying input action "Yahtzee/Quit".
-        /// </summary>
-        public InputAction @Quit => m_Wrapper.m_Yahtzee_Quit;
-        /// <summary>
-        /// Provides access to the underlying input action "Yahtzee/Save".
-        /// </summary>
-        public InputAction @Save => m_Wrapper.m_Yahtzee_Save;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -886,15 +808,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Select.started += instance.OnSelect;
             @Select.performed += instance.OnSelect;
             @Select.canceled += instance.OnSelect;
-            @Restart.started += instance.OnRestart;
-            @Restart.performed += instance.OnRestart;
-            @Restart.canceled += instance.OnRestart;
-            @Quit.started += instance.OnQuit;
-            @Quit.performed += instance.OnQuit;
-            @Quit.canceled += instance.OnQuit;
-            @Save.started += instance.OnSave;
-            @Save.performed += instance.OnSave;
-            @Save.canceled += instance.OnSave;
         }
 
         /// <summary>
@@ -909,15 +822,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Select.started -= instance.OnSelect;
             @Select.performed -= instance.OnSelect;
             @Select.canceled -= instance.OnSelect;
-            @Restart.started -= instance.OnRestart;
-            @Restart.performed -= instance.OnRestart;
-            @Restart.canceled -= instance.OnRestart;
-            @Quit.started -= instance.OnQuit;
-            @Quit.performed -= instance.OnQuit;
-            @Quit.canceled -= instance.OnQuit;
-            @Save.started -= instance.OnSave;
-            @Save.performed -= instance.OnSave;
-            @Save.canceled -= instance.OnSave;
         }
 
         /// <summary>
@@ -1256,27 +1160,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSelect(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "Restart" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnRestart(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "Quit" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnQuit(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "Save" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnSave(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.
