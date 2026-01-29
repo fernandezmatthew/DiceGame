@@ -5,8 +5,8 @@ using System.Linq;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class YahtzeePauseMenuManager : MonoBehaviour {
-    private List<YahtzeePauseMenuOption> menuOptions;
+public class YahtzeeEndGameManager : MonoBehaviour {
+    private List<YahtzeeEndGameOption> menuOptions;
     private Animator introAnimator;
     private YahtzeeManager yahtzeeManager;
 
@@ -15,16 +15,10 @@ public class YahtzeePauseMenuManager : MonoBehaviour {
             //subscribe proper function to each option's onClick event
             foreach (var option in menuOptions) {
                 switch (option.optionID) {
-                    case YahtzeePauseMenuOption.EYahtzeePauseMenuOption.Resume:
-                        option.GetComponent<MattUiButton>().onClick.AddListener(ResumeButtonClicked);
+                    case YahtzeeEndGameOption.EYahtzeeEndGameOption.PlayAgain:
+                        option.GetComponent<MattUiButton>().onClick.AddListener(PlayAgainButtonClicked);
                         break;
-                    case YahtzeePauseMenuOption.EYahtzeePauseMenuOption.Restart:
-                        option.GetComponent<MattUiButton>().onClick.AddListener(RestartButtonClicked);
-                        break;
-                    case YahtzeePauseMenuOption.EYahtzeePauseMenuOption.Options:
-                        option.GetComponent<MattUiButton>().onClick.AddListener(OptionsButtonClicked);
-                        break;
-                    case YahtzeePauseMenuOption.EYahtzeePauseMenuOption.MainMenu:
+                    case YahtzeeEndGameOption.EYahtzeeEndGameOption.MainMenu:
                         option.GetComponent<MattUiButton>().onClick.AddListener(MainMenuButtonClicked);
                         break;
                     default:
@@ -45,20 +39,15 @@ public class YahtzeePauseMenuManager : MonoBehaviour {
         //StartCoroutine(DisableInputWhileAnimating());
 
         //get all main menu options
-        menuOptions = FindObjectsByType<YahtzeePauseMenuOption>(FindObjectsSortMode.None).ToList();
+        menuOptions = FindObjectsByType<YahtzeeEndGameOption>(FindObjectsSortMode.None).ToList();
+        //subscribe proper function to each option's onClick event
         //subscribe proper function to each option's onClick event
         foreach (var option in menuOptions) {
             switch (option.optionID) {
-                case YahtzeePauseMenuOption.EYahtzeePauseMenuOption.Resume:
-                    option.GetComponent<MattUiButton>().onClick.AddListener(ResumeButtonClicked);
+                case YahtzeeEndGameOption.EYahtzeeEndGameOption.PlayAgain:
+                    option.GetComponent<MattUiButton>().onClick.AddListener(PlayAgainButtonClicked);
                     break;
-                case YahtzeePauseMenuOption.EYahtzeePauseMenuOption.Restart:
-                    option.GetComponent<MattUiButton>().onClick.AddListener(RestartButtonClicked);
-                    break;
-                case YahtzeePauseMenuOption.EYahtzeePauseMenuOption.Options:
-                    option.GetComponent<MattUiButton>().onClick.AddListener(OptionsButtonClicked);
-                    break;
-                case YahtzeePauseMenuOption.EYahtzeePauseMenuOption.MainMenu:
+                case YahtzeeEndGameOption.EYahtzeeEndGameOption.MainMenu:
                     option.GetComponent<MattUiButton>().onClick.AddListener(MainMenuButtonClicked);
                     break;
                 default:
@@ -70,18 +59,13 @@ public class YahtzeePauseMenuManager : MonoBehaviour {
     private void OnDisable() {
         if (menuOptions != null) {
             //subscribe proper function to each option's onClick event
+            //subscribe proper function to each option's onClick event
             foreach (var option in menuOptions) {
                 switch (option.optionID) {
-                    case YahtzeePauseMenuOption.EYahtzeePauseMenuOption.Resume:
-                        option.GetComponent<MattUiButton>().onClick.RemoveListener(ResumeButtonClicked);
+                    case YahtzeeEndGameOption.EYahtzeeEndGameOption.PlayAgain:
+                        option.GetComponent<MattUiButton>().onClick.RemoveListener(PlayAgainButtonClicked);
                         break;
-                    case YahtzeePauseMenuOption.EYahtzeePauseMenuOption.Restart:
-                        option.GetComponent<MattUiButton>().onClick.RemoveListener(RestartButtonClicked);
-                        break;
-                    case YahtzeePauseMenuOption.EYahtzeePauseMenuOption.Options:
-                        option.GetComponent<MattUiButton>().onClick.RemoveListener(OptionsButtonClicked);
-                        break;
-                    case YahtzeePauseMenuOption.EYahtzeePauseMenuOption.MainMenu:
+                    case YahtzeeEndGameOption.EYahtzeeEndGameOption.MainMenu:
                         option.GetComponent<MattUiButton>().onClick.RemoveListener(MainMenuButtonClicked);
                         break;
                     default:
@@ -91,8 +75,12 @@ public class YahtzeePauseMenuManager : MonoBehaviour {
         }
     }
 
-    private void ResumeButtonClicked() {
-        yahtzeeManager.Pause();
+    private void PlayAgainButtonClicked() {
+        yahtzeeManager.Restart();
+    }
+
+    private void MainMenuButtonClicked() {
+        yahtzeeManager.ReturnMainMenu();
     }
 
     //private IEnumerator DisableInputWhileAnimating() {
@@ -109,15 +97,4 @@ public class YahtzeePauseMenuManager : MonoBehaviour {
 
     //    InputManager.EnableInput();
     //}
-
-    private void RestartButtonClicked() {
-        yahtzeeManager.RestartFromPause();
-    }
-
-    private void OptionsButtonClicked() {
-        Debug.Log("Options not implemented yet");
-    }
-    private void MainMenuButtonClicked() {
-        yahtzeeManager.ReturnMainMenuFromPause();
-    }
 }

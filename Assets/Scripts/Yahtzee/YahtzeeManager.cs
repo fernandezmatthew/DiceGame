@@ -17,6 +17,7 @@ public class YahtzeeManager : MonoBehaviour {
     private int currentRound = 1;
     private bool isPaused = false;
     private bool hasStarted = false;
+    private bool hasEnded = false;
 
     //UI STUFF
     public RectTransform canvas;
@@ -25,7 +26,9 @@ public class YahtzeeManager : MonoBehaviour {
     public GameInfoDisplay rollsLeftDisplay;
     public GameInfoDisplay currentRoundDisplay;
     private ScoresheetDisplay scoresheetDisplay;
+    public GameObject staticGameUi;
     public GameObject pauseMenu;
+    public GameObject endGameScreen;
 
     //Save stuff
     private YahtzeeSaveHandler saveHandler;
@@ -182,11 +185,20 @@ public class YahtzeeManager : MonoBehaviour {
         }
         else {
             rollsRemaining = 0;
-            //Do game end stuff
+            EndGame();
             SaveGame();
         }
     }
 
+    private void EndGame() {
+        hasEnded = true;
+        HandleEndGameUi();
+    }
+
+    private void HandleEndGameUi() {
+        staticGameUi.SetActive(false);
+        endGameScreen.SetActive(true);
+    }
     private void SaveGame() {
         int[] scoreEntryValues = scoresheet.GetScoreEntryValues();
         int[] detailEntryVaues = scoresheet.GetDetailEntryValues();
@@ -226,39 +238,6 @@ public class YahtzeeManager : MonoBehaviour {
         while (transitionAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1) {
             yield return null;
         }
-        InputManager.EnableInput();
-        InputManager.EnableGlobalInput();
-    }
-
-    private IEnumerator RestartAnimation() {
-        transitionAnimator.SetTrigger("Close");
-        InputManager.DisableInput();
-        InputManager.DisableGlobalInput();
-        yield return null;
-
-        //wait for transition
-        while (transitionAnimator.IsInTransition(0)) {
-            yield return null;
-        }
-        //wait for animation to finish
-        while (transitionAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1) {
-            yield return null;
-        }
-
-        RestartData();
-        transitionAnimator.SetTrigger("Open");
-        yield return null;
-        
-
-        //wait for transition
-        while (transitionAnimator.IsInTransition(0)) {
-            yield return null;
-        }
-        //wait for animation to finish
-        while (transitionAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1) {
-            yield return null;
-        }
-
         InputManager.EnableInput();
         InputManager.EnableGlobalInput();
     }
@@ -311,7 +290,52 @@ public class YahtzeeManager : MonoBehaviour {
     }
 
     public void RestartClicked(InputAction.CallbackContext ctx) {
+        Restart();
+    }
+
+    public void Restart() {
+        hasEnded = false;
         StartCoroutine(RestartAnimation());
+    }
+
+    public void RestartFromPause() {
+        Pause();
+        Restart();
+    }
+
+    private IEnumerator RestartAnimation() {
+        transitionAnimator.SetTrigger("Close");
+        InputManager.DisableInput();
+        InputManager.DisableGlobalInput();
+        yield return null;
+
+        //wait for transition
+        while (transitionAnimator.IsInTransition(0)) {
+            yield return null;
+        }
+        //wait for animation to finish
+        while (transitionAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1) {
+            yield return null;
+        }
+
+        staticGameUi.SetActive(true);
+        endGameScreen.SetActive(false);
+        RestartData();
+        transitionAnimator.SetTrigger("Open");
+        yield return null;
+
+
+        //wait for transition
+        while (transitionAnimator.IsInTransition(0)) {
+            yield return null;
+        }
+        //wait for animation to finish
+        while (transitionAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1) {
+            yield return null;
+        }
+
+        InputManager.EnableInput();
+        InputManager.EnableGlobalInput();
     }
 
     //called from 'reset' inputaction
@@ -327,14 +351,12 @@ public class YahtzeeManager : MonoBehaviour {
         UpdateGameInfoDisplays();
     }
 
-    public void RestartFromPause() {
-        Pause();
-        StartCoroutine(RestartAnimation());
-    }
-
     //called from 'pause' inputaction
     public void PauseClicked(InputAction.CallbackContext ctx) {
-        Pause();
+        if (!hasEnded) {
+            Pause();
+        }
+        
     }
 
     public void Pause() {
@@ -361,10 +383,14 @@ public class YahtzeeManager : MonoBehaviour {
     }
 
     public void ReturnMainMenu() {
-        Pause();
         transitionAnimator.SetTrigger("Close");
         StartCoroutine(LoadSceneAfterAnimation("Scenes/YahtzeeMainMenu"));
         StartCoroutine(DisableInputWhileAnimating());
+    }
+
+    public void ReturnMainMenuFromPause() {
+        Pause();
+        ReturnMainMenu();
     }
 
     IEnumerator LoadSceneAfterAnimation(string scene) {
