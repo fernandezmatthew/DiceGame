@@ -149,6 +149,7 @@ GameObject:
   - component: {fileID: 7133197111917658373}
   - component: {fileID: 7800037294057936870}
   - component: {fileID: 2366074923211991149}
+  - component: {fileID: 7250123328292321264}
   m_Layer: 5
   m_Name: CurrentRound
   m_TagString: Untagged
@@ -228,6 +229,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 8467060969280776162}
+--- !u!114 &7250123328292321264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 181539947418326164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 8, y: 8}
+  m_UseGraphicAlpha: 1
 --- !u!1 &6363321076719993414
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,6 +392,7 @@ GameObject:
   - component: {fileID: 6355152531350427447}
   - component: {fileID: 9172168738318659118}
   - component: {fileID: 4889546574790637399}
+  - component: {fileID: 4910335357244033110}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -441,3 +458,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4910335357244033110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8101260737582761084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 6, y: 6}
+  m_UseGraphicAlpha: 0

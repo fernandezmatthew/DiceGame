@@ -3065,8 +3065,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 77.2
-  m_fontSizeBase: 77.2
+  m_fontSize: 97.66
+  m_fontSizeBase: 97.66
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3632,7 +3632,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1959659219}
   - component: {fileID: 1959659221}
-  - component: {fileID: 1959659220}
   m_Layer: 5
   m_Name: QuitConfirm
   m_TagString: Untagged
@@ -3661,18 +3660,6 @@ RectTransform:
   m_AnchoredPosition: {x: 3.2939453, y: 0}
   m_SizeDelta: {x: -72.45996, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1959659220
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1959659218}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4ed544f00b64194ba7a1133ddeb0f8f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::YahtzeePauseMenuManager
 --- !u!222 &1959659221
 CanvasRenderer:
   m_ObjectHideFlags: 0
