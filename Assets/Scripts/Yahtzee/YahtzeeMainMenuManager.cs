@@ -4,13 +4,19 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
-public class YahtzeeMainMenuManager : MonoBehaviour
+public class YahtzeeMainMenuManager : YahtzeeGeneralManager
 {
     private List<YahtzeeMainMenuOption> menuOptions;
     private Animator transitionAnimator;
 
     private void OnEnable() {
+        if (InputManager.IsInitiated()) {
+            InputManager.PlayerInputActions.Global.Pause.started += PauseButtonClicked;
+        }
+        
+
         if (menuOptions != null) {
             //subscribe proper function to each option's onClick event
             foreach (var option in menuOptions) {
@@ -45,6 +51,9 @@ public class YahtzeeMainMenuManager : MonoBehaviour
         //disable player input while this is happening.
         StartCoroutine(DisableInputWhileAnimating());
 
+        if (InputManager.IsInitiated()) {
+            InputManager.PlayerInputActions.Global.Pause.started += PauseButtonClicked;
+        }
         //get all main menu options
         menuOptions = FindObjectsByType<YahtzeeMainMenuOption>(FindObjectsSortMode.None).ToList();
         //subscribe proper function to each option's onClick event
@@ -69,6 +78,9 @@ public class YahtzeeMainMenuManager : MonoBehaviour
     }
 
     private void OnDisable() {
+        if (InputManager.IsInitiated()) {
+            InputManager.PlayerInputActions.Global.Pause.started -= PauseButtonClicked;
+        }
         if (menuOptions != null) {
             //subscribe proper function to each option's onClick event
             foreach (var option in menuOptions) {
@@ -92,6 +104,10 @@ public class YahtzeeMainMenuManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void PauseButtonClicked(InputAction.CallbackContext ctx) { 
+        quitConfirmUi.SetActive(false);
     }
 
     private void StartButtonClicked() {
@@ -137,12 +153,8 @@ public class YahtzeeMainMenuManager : MonoBehaviour
     private void DiceButtonClicked() {
         Debug.Log("Dice Selection not implemented yet");
     }
+
     private void QuitButtonClicked() {
-    #if UNITY_STANDALONE
-        Application.Quit();
-    #endif
-    #if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-    #endif
+        ConfirmQuit();
     }
 }

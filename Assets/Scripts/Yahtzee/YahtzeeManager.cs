@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
-public class YahtzeeManager : MonoBehaviour {
+public class YahtzeeManager : YahtzeeGeneralManager {
     [HideInInspector] public UnityEvent diceRollFinished;
     [HideInInspector] public UnityEvent toggleLockDie;
 
@@ -197,6 +197,7 @@ public class YahtzeeManager : MonoBehaviour {
         saveHandler.Save(scoreEntryValues, detailEntryVaues);
     }
 
+    //for debugging with a hotkey
     private void SaveGame(InputAction.CallbackContext ctx) {
         SaveGame();
     }
@@ -346,6 +347,7 @@ public class YahtzeeManager : MonoBehaviour {
     public void PauseClicked(InputAction.CallbackContext ctx) {
         if (!hasEnded) {
             Pause();
+            quitConfirmUi.SetActive(false);
         }
         
     }
@@ -397,12 +399,13 @@ public class YahtzeeManager : MonoBehaviour {
         SceneManager.LoadScene(scene);
     }
 
-    public void Quit(InputAction.CallbackContext ctx) {
-    #if UNITY_STANDALONE
-        Application.Quit();
-    #endif
-    #if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-    #endif
+    public override void ConfirmQuit() {
+        pauseMenu.SetActive(false);
+        base.ConfirmQuit();
+    }
+
+    public override void QuitCancelled() {
+        pauseMenu.SetActive(true);
+        base.QuitCancelled();
     }
 }

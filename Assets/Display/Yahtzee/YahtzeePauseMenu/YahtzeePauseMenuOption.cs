@@ -8,7 +8,8 @@ public class YahtzeePauseMenuOption : MonoBehaviour
         Resume,
         Restart,
         Options,
-        MainMenu
+        MainMenu,
+        Quit
     }
     public EYahtzeePauseMenuOption optionID;
 }

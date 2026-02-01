@@ -1,9 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class YahtzeePauseMenuManager : MonoBehaviour {
     private List<YahtzeePauseMenuOption> menuOptions;
@@ -26,6 +23,9 @@ public class YahtzeePauseMenuManager : MonoBehaviour {
                         break;
                     case YahtzeePauseMenuOption.EYahtzeePauseMenuOption.MainMenu:
                         option.GetComponent<MattUiButton>().onClick.AddListener(MainMenuButtonClicked);
+                        break;
+                    case YahtzeePauseMenuOption.EYahtzeePauseMenuOption.Quit:
+                        option.GetComponent<MattUiButton>().onClick.AddListener(QuitButtonClicked);
                         break;
                     default:
                         break;
@@ -61,6 +61,9 @@ public class YahtzeePauseMenuManager : MonoBehaviour {
                 case YahtzeePauseMenuOption.EYahtzeePauseMenuOption.MainMenu:
                     option.GetComponent<MattUiButton>().onClick.AddListener(MainMenuButtonClicked);
                     break;
+                case YahtzeePauseMenuOption.EYahtzeePauseMenuOption.Quit:
+                    option.GetComponent<MattUiButton>().onClick.AddListener(QuitButtonClicked);
+                    break;
                 default:
                     break;
             }
@@ -83,6 +86,9 @@ public class YahtzeePauseMenuManager : MonoBehaviour {
                         break;
                     case YahtzeePauseMenuOption.EYahtzeePauseMenuOption.MainMenu:
                         option.GetComponent<MattUiButton>().onClick.RemoveListener(MainMenuButtonClicked);
+                        break;
+                    case YahtzeePauseMenuOption.EYahtzeePauseMenuOption.Quit:
+                        option.GetComponent<MattUiButton>().onClick.RemoveListener(QuitButtonClicked);
                         break;
                     default:
                         break;
@@ -119,5 +125,9 @@ public class YahtzeePauseMenuManager : MonoBehaviour {
     }
     private void MainMenuButtonClicked() {
         yahtzeeManager.ReturnMainMenuFromPause();
+    }
+
+    private void QuitButtonClicked() {
+        yahtzeeManager.ConfirmQuit();
     }
 }
